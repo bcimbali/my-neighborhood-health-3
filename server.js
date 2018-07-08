@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express();
 const bodyParser = require("body-parser");
+const routes = require("./routes");
 const mongoose = require('mongoose');
 const favicon = require('express-favicon');
 const PORT = process.env.PORT || 3001; 
