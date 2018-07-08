@@ -2,6 +2,7 @@ const express = require('express')
 const app = express();
 const bodyParser = require("body-parser");
 const mongoose = require('mongoose');
+const favicon = require('express-favicon');
 const PORT = process.env.PORT || 3001; 
 
 //connect to mongoose
