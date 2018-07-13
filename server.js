@@ -8,6 +8,11 @@ const PORT = process.env.PORT || 3001;
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 
+// Brett added this to try to test a Heroku fix. 
+// It's probably not what we want but is a placeholder to see if it'll
+// make Heroku happy.
+var db = mongoose.connection;
+
 //connect to mongoose
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/my-neighborhood-health');
 
@@ -19,7 +24,7 @@ app.use(session({
     store: new MongoStore({
       mongooseConnection: db
     })
-  }));
+}));
 
 //define middleware
 app.use(bodyParser.urlencoded({ extended: true}));
