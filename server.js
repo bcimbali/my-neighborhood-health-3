@@ -11,6 +11,8 @@ var MongoStore = require('connect-mongo')(session);
 //connect to mongoose
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/my-neighborhood-health');
 
+var db = mongoose.connection;
+
 //use sessions for tracking logins
 app.use(session({
     secret: 'work hard',
