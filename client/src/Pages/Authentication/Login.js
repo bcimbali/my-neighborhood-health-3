@@ -1,24 +1,16 @@
 import React, {Component} from 'react';
-// import './Login.css';
+var axios = require('axios')
+
 
 class Login extends Component {
 	
 	state = {
-		email: '',
+		username: '',
 		password: '',
 		terms: false,
 	}
 	
-	// constructor (props) {
-	// 	super(props);
-	// 	this.state = {
-	// 		inputvalue: ''
-	// 	}
-  
-	// 	this.handleChange = this.handleChange.bind(this);
-	// 	this.handleSubmit = this.handleSubmit.bind(this);
-	// }
-  
+	  
 	handleChange = (event) => {
 		if (event.target.name === "terms") {
 			this.setState({
@@ -36,7 +28,7 @@ class Login extends Component {
 	handleSubmit = (event) => {
 		console.log('Form value: ' , this.state);
 		event.preventDefault();
-		if (!this.state.name.trim() === "" || !this.state.password.trim() === "") {
+		if (!this.state.username.trim() === "" || !this.state.password.trim() === "") {
 			// we are good to go submit
 			//regular expression checking for email and password here
 			// const loginData = {email: this.state.email, password: this.state.password}
@@ -44,22 +36,35 @@ class Login extends Component {
 			//   .then(res => ...handle response)
 			//	.redirect (/)
 			//   .catch(err => ...handle error)
+			const userData = {
+				username: this.state.username,
+				password: this.state.password
+			}
+			axios.post('/api/auth/login', { userData })
+			  .then(function (response) {
+				console.log(response);
+			  })
+			  .catch(function (error) {
+				console.log(error);
+			  });
+
+
 		}
 		
 	}
   
 	render() {
-		let disabledBtn = true;
-		let button = <button disabled={disabledBtn}>Submit</button>
-		if(this.state.name.length > 0 && this.state.password.length > 0) {
-			disabledBtn = false;
-		}
+		// let disabledBtn = true;
+		// let button = <button disabled={disabledBtn}>Submit</button>
+		// if(this.state.email.length > 0 && this.state.password.length > 0) {
+		// 	disabledBtn = false;
+		// }
 	  return (
 		<form onSubmit = {this.handleSubmit}>
 			<div className="field">
-				<label className="label">Email</label>
+				<label className="label">User Name</label>
 					<div className="control">
-						<input className="input" type="text" name="email" value={this.state.email} onChange={this.handleChange}/>
+						<input className="input" type="text" name="username" value={this.state.username} onChange={this.handleChange}/>
 					</div>
 			</div>
 			<div className="field">
@@ -81,8 +86,8 @@ class Login extends Component {
 					</label>
 				</div>
 			</div>
-			{/* <button disabled = {this.state.terms ? false : true}> Submit </button>*/}
-			{button}
+			<button disabled = {this.state.terms ? false : true}> Submit </button>
+			{/* {button} */}
 		</form>
 	  );
 	}
