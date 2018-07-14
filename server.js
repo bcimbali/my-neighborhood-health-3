@@ -16,7 +16,7 @@ var db = mongoose.connection;
 //connect to mongoose
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/my-neighborhood-health');
 
-var db = mongoose.connection;
+//var db = mongoose.connection;
 
 //use sessions for tracking logins
 app.use(session({
