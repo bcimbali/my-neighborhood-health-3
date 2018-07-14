@@ -5,7 +5,7 @@ import Nav from './components/Nav';
 import Communities from './components/Communities';
 import News from './components/News';
 import GoogleApiWrapper from './components/Map/map';
-import Login from './components/Login';
+import Authentication from './Pages/Authentication';
 
 
 class App extends Component {
@@ -15,7 +15,7 @@ class App extends Component {
       <Router>
         <div>
           <Switch>
-            <Route exact path='/login' component = {Login} />
+            <Route exact path='/login' component = {Authentication} />
               
           </Switch>
         </div>

@@ -10,7 +10,7 @@ router.get('/login', function (req, res, next) {
 
 
 //POST route for updating data
-router.post('/', function (req, res, next) {
+router.post('/api/auth/login', function (req, res, next) {
   // confirm that user typed same password twice
   if (req.body.password !== req.body.passwordConf) {
     var err = new Error('Passwords do not match.');
