@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 // import {GoogleApiWrapper} from 'google-maps-react';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
+import dummyData from "../../dummyData.json";
 
 // ...
 
@@ -11,8 +12,6 @@ export class MapContainer extends Component {
         activeMarker: {},
         selectedPlace: {},
       };
-
-      
     
       onMarkerClick = (props, marker, e) =>
         this.setState({
@@ -368,6 +367,8 @@ export class MapContainer extends Component {
             ]
           }
         ]
+        const data=dummyData;
+        //the purpose of this const is to create a data variable so that we can utilize the dummy data in our marker.
       return (
         
 
@@ -385,6 +386,11 @@ export class MapContainer extends Component {
           <Marker onClick={this.onMarkerClick}
                   name={'Current location'} />
   
+  <Marker
+    title={data[0].facilityName}
+    name={data[0].facilityName}
+    position={{lat: data[0].fac_Lat, lng: data[0].fac_Long}} />
+          
           <InfoWindow onClose={this.onInfoWindowClose}>
               <div>
                 <h1>{this.state.selectedPlace.name}</h1>
