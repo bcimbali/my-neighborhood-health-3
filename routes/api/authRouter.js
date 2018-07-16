@@ -7,16 +7,18 @@ var User = require('./../../models/user');
 // router.get('/login', function (req, res, next) {
 //   return res.sendFile(path.join(__dirname + '/templateLogReg/index.html'));
 // });
-console.log("in loginRouter")
+console.log("in authRouter")
 
 //POST route for updating data
-router.route('/').post (function(req, res){
+//the / is using index.js which is /api/authentication
+router.route('/register').post (function(req, res){
   console.log(req);
   User.create(req.body, function (error, user) {
           if (error) {
             return res.sendStatus(500);
           } else {
             req.session.userId = user._id;
+            console.log(user._id);
             return res.sendStatus(200);
           }
         });

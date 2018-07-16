@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 
-class Login extends Component {
+class Register extends Component {
 	
 	state = {
         username: '',
@@ -52,7 +52,7 @@ class Login extends Component {
                 passwordConf: this.state.passwordConf
             }
             console.log(userData)
-			axios.post('/api/login', userData)
+			axios.post('/api/authentication/register', userData)
             .then(res => res.data)
             .catch(err => console.error("Wasn't able to update the database.", err))
         }
@@ -110,4 +110,4 @@ class Login extends Component {
 	}
   }
 
-export default Login;
+export default Register;
