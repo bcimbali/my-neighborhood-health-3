@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 // import {GoogleApiWrapper} from 'google-maps-react';
-import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
+import {InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 import dummyData from "../../dummyData.json";
+import Map from '../Map';
 
 // ...
 
@@ -368,37 +369,11 @@ export class MapContainer extends Component {
           }
         ]
         const data=dummyData;
-        //the purpose of this const is to create a data variable so that we can utilize the dummy data in our marker.
-      return (
         
+        //the purpose of this const is to create a data variable so that we can utilize the dummy data in our marker.
 
-        <Map
-         google={this.props.google}
-         styles={styles}
-         initialCenter={{
-           lat: 41.8781,
-           lng: -87.6298
-         }}
-         zoom={14}
-         onClick={this.onMapClicked}
-       >
 
-         {data.map(tile => (
-           <Marker
-           title={tile.facilityName}
-           name={tile.facilityName}
-           position={{lat: tile.fac_Lat, lng: tile.fac_Long}} />
-         ))}
-          {/* <Marker onClick={this.onMarkerClick}
-                  name={'Current location'} /> */}
-          
-          <InfoWindow onClose={this.onInfoWindowClose}>
-              <div>
-                <h1>{this.state.selectedPlace.name}</h1>
-              </div>
-          </InfoWindow>
-        </Map>
-      );
+
     }
   }
 
