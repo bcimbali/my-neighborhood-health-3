@@ -1,14 +1,10 @@
 const router = require("express").Router();
 const authRouter = require("./authRouter");
-// const articleRoutes = require("./articles");
-// const nytRoutes = require("./nyt");
-
-// NYT routes - Imported from React hw
-// router.use("/articles", articleRoutes);
-// router.use("/nyt", nytRoutes);
-
+const articleRouter = require("./articleRouter");
 
 router.use("/authentication", authRouter);
 // router.use("/login", loginRouter);
+
+router.use("/news", articleRouter);
 
 module.exports = router;
