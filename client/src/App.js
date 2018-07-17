@@ -16,7 +16,7 @@ class App extends Component {
         <div>
           <Switch>
             <Route exact path='/authentication' component = {Authentication} />
-              
+            <Route exact path='/' component = {GoogleApiWrapper} /> 
           </Switch>
         </div>
     </Router>
