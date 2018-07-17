@@ -28,7 +28,7 @@ class Login extends Component {
 	handleSubmit = (event) => {
 		console.log('Form value: ' , this.state);
 		event.preventDefault();
-		if (!this.state.username.trim() === "" || !this.state.password.trim() === "") {
+		//if (!this.state.username.trim() === "" || !this.state.password.trim() === "") {
 			// we are good to go submit
 			//regular expression checking for email and password here
 			// const loginData = {email: this.state.email, password: this.state.password}
@@ -36,22 +36,20 @@ class Login extends Component {
 			//   .then(res => ...handle response)
 			//	.redirect (/)
 			//   .catch(err => ...handle error)
-			const userData = {
-				username: this.state.username,
-				password: this.state.password
-			}
-			axios.post('/api/auth/login', { userData })
-			  .then(function (response) {
-				console.log(response);
-			  })
-			  .catch(function (error) {
-				console.log(error);
-			  });
+			
+			if (!this.state.username.trim() === "" || !this.state.password.trim() === "") {
+				const userData = {
+					username: this.state.username,
+					password: this.state.password
+				}
+					console.log(userData)
+				axios.post('/api/authentication/register', userData)
+					.then(res => res.data)
+					.catch(err => console.error("Wasn't able to update the database.", err))
+				}	else {
+					alert("Enter Your User Name or Password!")
+				}
 
-
-		}
-		
-	}
   
 	render() {
 		// let disabledBtn = true;
