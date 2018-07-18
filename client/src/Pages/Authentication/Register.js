@@ -29,22 +29,6 @@ class Register extends Component {
 	handleSubmit = (event) => {
 		console.log('Form value: ' , this.state);
 		event.preventDefault();
-		// if (!this.state.email.trim() === "" || !this.state.password.trim() === "") {
-			// we are good to go submit
-			//regular expression checking for email and password here
-			// const loginData = {email: this.state.email, password: this.state.password}
-			// axios.post(`/api/auth/login`, loginData)
-			//   .then(res => ...handle response)
-			//	.redirect (/)
-            //   .catch(err => ...handle error)
-            //if (req.body.password !== req.body.passwordConf) {
-                //   var err = new Error('Passwords do not match.');
-                //   err.status = 400;
-                //   res.send("passwords dont match");
-                //   return next(err);
-                // }
-
-
 			const userData = {
                 username: this.state.username,
                 email: this.state.email,
@@ -65,32 +49,35 @@ class Register extends Component {
 		// 	disabledBtn = false;
 		// }
 	  return (
+		<div className="card">
+		<div className="card-header">  Login to our site  </div>
+		<div className="card-body">
 		<form onSubmit = {this.handleSubmit}>
             <div className="field">
 				<label className="label">UserName</label>
 					<div className="control">
-						<input className="input" type="text" name="username" value={this.state.username} onChange={this.handleChange}/>
+						<input className="input" type="text" name="username" placeholder="Enter username" value={this.state.username} onChange={this.handleChange}/>
 					</div>
 			</div>
-			<div className="field">
+			<div className="field mt-2">
 				<label className="label">Email</label>
 					<div className="control">
-						<input className="input" type="text" name="email" value={this.state.email} onChange={this.handleChange}/>
+						<input className="input" type="text" name="email" placeholder="Enter email" value={this.state.email} onChange={this.handleChange}/>
 					</div>
 			</div>
-			<div className="field">
+			<div className="field mt-2">
 			<label className="label">Password</label>
 				<div className="control">
-					<input className="input" type="text" name="password" value={this.state.password} onChange={this.handleChange}/>
+					<input className="input" type="text" name="password" placeholder="Enter password" value={this.state.password} onChange={this.handleChange}/>
 				</div>
 			</div>
-            <div className="field">
+            <div className="field mt-2">
 			<label className="label">Password Confirmation</label>
 				<div className="control">
-					<input className="input" type="text" name="passwordConf" value={this.state.passwordConf} onChange={this.handleChange}/>
+					<input className="input" type="text" name="passwordConf" placeholder="Enter password again" value={this.state.passwordConf} onChange={this.handleChange}/>
 				</div>
 			</div>
-			<div className="field">
+			<div className="field mt-2">
 				<div className="control">
 					<label className="checkbox">
 						<input
@@ -103,11 +90,31 @@ class Register extends Component {
 					</label>
 				</div>
 			</div>
-			<button disabled = {this.state.terms ? false : true}> Submit </button>
+			<button className="mt-2" disabled = {this.state.terms ? false : true}> Submit </button>
 			{/* {button} */}
 		</form>
+		</div>
+		</div>
+	
 	  );
 	}
   }
 
 export default Register;
+
+
+//In handle submit after event.preventDefault 
+// if (!this.state.email.trim() === "" || !this.state.password.trim() === "") {
+			// we are good to go submit
+			//regular expression checking for email and password here
+			// const loginData = {email: this.state.email, password: this.state.password}
+			// axios.post(`/api/auth/login`, loginData)
+			//   .then(res => ...handle response)
+			//	.redirect (/)
+            //   .catch(err => ...handle error)
+            //if (req.body.password !== req.body.passwordConf) {
+                //   var err = new Error('Passwords do not match.');
+                //   err.status = 400;
+                //   res.send("passwords dont match");
+                //   return next(err);
+                // }
