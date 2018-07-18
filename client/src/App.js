@@ -4,7 +4,7 @@ import './App.css';
 import Nav from './components/Nav';
 import Communities from './components/Communities';
 import News from './components/News';
-import GoogleApiWrapper from './components/Map/map';
+import GoogleApiWrapper from './components/MapContainer';
 import Authentication from './Pages/Authentication';
 
 
@@ -14,13 +14,16 @@ class App extends Component {
 
       <Router>
         <div>
+          <Nav />
+          <Route exact path="/communities" component={Communities} />
+          <Route exact path="/news" component={News} />
           <Switch>
-            <Route exact path='/authentication' component = {Authentication} />
-            <Route exact path='/' component = {GoogleApiWrapper} /> 
+            <Route exact path='/authentication' component={Authentication} />
+            <Route exact path='/' component={GoogleApiWrapper} />
           </Switch>
         </div>
-    </Router>
-      
+      </Router>
+
     );
   }
 }
