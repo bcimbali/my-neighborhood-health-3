@@ -31,11 +31,6 @@ export class MapContainer extends Component {
 
     render() {
 
-        const style = {
-            height: '100vh',
-            width: '100vw'
-        }
-
         const styles = [
           {
             "elementType": "geometry",
