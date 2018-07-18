@@ -25,8 +25,11 @@
   },
   "homepage": "https://github.com/NUcoding02Project3/my-neighborhood-health-3#readme",
   "dependencies": {
+    "ajv": "^6.5.2",
+    "axios": "^0.18.0",
     "bcrypt": "^3.0.0",
     "body-parser": "^1.18.3",
+    "cheerio": "^1.0.0-rc.2",
     "concurrently": "^3.6.0",
     "connect-mongo": "^2.0.1",
     "express": "^4.16.3",
@@ -36,6 +39,7 @@
     "if-env": "^1.0.4",
     "mongoose": "^5.2.1",
     "nodemon": "^1.17.5",
-    "react-scripts": "^1.1.4"
+    "react-scripts": "^1.1.4",
+    "request": "^2.87.0"
   }
 }

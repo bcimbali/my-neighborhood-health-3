@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const routes = require("./routes");
 const mongoose = require('mongoose');
 const favicon = require('express-favicon');
-const PORT = process.env.PORT || 3001; 
+const PORT = process.env.PORT || 3001;
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 
@@ -24,12 +24,12 @@ app.use(session({
     resave: true,
     saveUninitialized: false,
     store: new MongoStore({
-      mongooseConnection: db
+        mongooseConnection: db
     })
 }));
 
 //define middleware
-app.use(bodyParser.urlencoded({ extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // Heroku will use this for production
@@ -44,6 +44,7 @@ app.use(express.static(__dirname + '/templateLogReg'));
 app.use(routes);
 
 //start the API server
-app.listen(PORT, function() {
+app.listen(PORT, function () {
     console.log(`API Server now listening on PORT ${PORT}`);
-})
+});
+
