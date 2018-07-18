@@ -4,8 +4,6 @@ import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 import dummyData from "../../dummyData.json";
 import orangeDiamond from "./../../orange-diamond.ico"
 
-// ...
-
 export class MapContainer extends Component {
     constructor() {
     super();

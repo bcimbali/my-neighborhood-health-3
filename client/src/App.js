@@ -4,7 +4,7 @@ import './App.css';
 import Nav from './components/Nav';
 import Communities from './components/Communities';
 import News from './components/News';
-import GoogleApiWrapper from './components/Map';
+import GoogleApiWrapper from './components/MapContainer';
 import Authentication from './Pages/Authentication';
 
 
