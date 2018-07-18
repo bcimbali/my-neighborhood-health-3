@@ -9,8 +9,7 @@ var User = require('./../../models/user');
 // });
 console.log("in authRouter")
 
-//POST route for updating data
-//the / is using index.js which is /api/authentication
+//POST route for updating data. The / is using index.js which is /api/authentication
 router.route('/register').post (function(req, res){
   console.log(req);
   User.create(req.body, function (error, user) {
@@ -23,6 +22,35 @@ router.route('/register').post (function(req, res){
           }
         });
 });
+
+router.route('/login').post (function(req, res, next){
+  console.log("This is the login router req")
+  console.log(req)
+  console.log("In login router")
+  User.authenticate(req.body.username, req.body.password, function (error, user) {
+    if (error || !user) {
+      var err = new Error('Wrong username or password.');
+      err.status = 401;
+      return next(err);
+    } else {
+      console.log("Correct username and password")
+      req.session.userId = user._id;
+      return res.redirect('/');
+    }
+  });
+});
+
+
+
+
+
+
+
+
+
+
+
+
   //confirm that user typed same password twice
 //   if (req.body.password !== req.body.passwordConf) {
 //     var err = new Error('Passwords do not match.');

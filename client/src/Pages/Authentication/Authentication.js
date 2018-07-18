@@ -6,10 +6,9 @@ import Register from './Register';
 
 const Authentication = (props) => {
 	return (
-        <div>
-        {/* <Login/> */}
+        <div className="d-flex justify-content-around m-5">
+        <Login/>
         <Register/>
-
         </div>
 
 		

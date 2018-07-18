@@ -2,17 +2,18 @@ import React, { Component } from 'react';
 // import {GoogleApiWrapper} from 'google-maps-react';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 import dummyData from "../../dummyData.json";
-
-// ...
+import orangeDiamond from "./../../orange-diamond.ico"
 
 export class MapContainer extends Component {
-
-    state = {
+    constructor() {
+    super();
+    this.state = {
+      markers: [],
         showingInfoWindow: false,
         activeMarker: {},
         selectedPlace: {},
       };
-    
+    }
       onMarkerClick = (props, marker, e) =>
         this.setState({
           selectedPlace: props,
@@ -27,6 +28,25 @@ export class MapContainer extends Component {
             activeMarker: null
           })
         }
+      };
+
+      componentWillMount() {
+        fetch('https://iaspub.epa.gov/enviro/efservice/tri_facility/zip_code/BEGINNING/6060/JSON')
+        .then(results => {
+          return results.json();
+        }).then(data => {
+          console.log('data', data);
+          let markers = data.map((tile) => {
+            return (<Marker
+            key={tile.TRI_FACILITY_ID}
+            title={tile.FACILITY_NAME}
+            icon={{url: orangeDiamond}} 
+            name={tile.STATE_ABBR}
+            position={{lat: tile.PREF_LATITUDE, lng: `-${tile.PREF_LONGITUDE}`}} />
+          )});
+          this.setState({markers: markers});
+          console.log(this.state.markers)
+        })
       };
 
     render() {
@@ -383,14 +403,7 @@ export class MapContainer extends Component {
          onClick={this.onMapClicked}
        >
 
-         {data.map(tile => (
-           <Marker
-           title={tile.facilityName}
-           name={tile.facilityName}
-           position={{lat: tile.fac_Lat, lng: tile.fac_Long}} />
-         ))}
-          {/* <Marker onClick={this.onMarkerClick}
-                  name={'Current location'} /> */}
+        {this.state.markers}
           
           <InfoWindow onClose={this.onInfoWindowClose}>
               <div>
