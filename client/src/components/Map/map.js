@@ -376,10 +376,10 @@ export class MapContainer extends Component {
          google={this.props.google}
          styles={styles}
          initialCenter={{
-           lat: 41.8781,
-           lng: -87.6298
+           lat: 41.881339,
+           lng: -87.676422
          }}
-         zoom={14}
+         zoom={12}
          onClick={this.onMapClicked}
        >
 
