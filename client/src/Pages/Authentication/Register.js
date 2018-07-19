@@ -37,7 +37,9 @@ class Register extends Component {
             }
             console.log(userData)
 			axios.post('/api/authentication/register', userData)
-            .then(res => res.data)
+            .then(function (response) {
+				window.location = response.data.redirect
+			})
             .catch(err => console.error("Wasn't able to update the database.", err))
         }
 	

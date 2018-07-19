@@ -18,7 +18,8 @@ router.route('/register').post (function(req, res){
           } else {
             req.session.userId = user._id;
             console.log(user._id);
-            return res.sendStatus(200);
+            //return res.sendStatus(200);
+            return res.json({redirect: "/"})
           }
         });
 });
