@@ -18,7 +18,8 @@ router.route('/register').post (function(req, res){
           } else {
             req.session.userId = user._id;
             console.log(user._id);
-            return res.sendStatus(200);
+            //return res.sendStatus(200);
+            return res.json({redirect: "/"})
           }
         });
 });
@@ -35,7 +36,9 @@ router.route('/login').post (function(req, res, next){
     } else {
       console.log("Correct username and password")
       req.session.userId = user._id;
-      return res.redirect('/');
+      //return res.redirect('/');
+      //return res.status(200);
+      return res.json({redirect: "/"})
     }
   });
 });

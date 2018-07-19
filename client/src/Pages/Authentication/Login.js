@@ -29,12 +29,32 @@ class Login extends Component {
 		console.log("Inside handleSubmit");
 		console.log(userData);
 		axios.post('/api/authentication/login', userData)
-			.then(res => res.data, console.log(userData))
+		.then(function (response) {
+			window.location = response.data.redirect
+			
+			// const path = '/news';
+			//console.log(response.data.redirect)
+			//console.log(this.props.history)
+        	//this.props.history.push('/news');
+		  })
+			
+			//.then(res => this.props.history.push("/"))
+			//.then(res => res.data, console.log(userData))
 			.catch(err => console.error("Wasn't able to authenticate in database.", err))
 		}	
 
+		
   
 	render() {
+		const userData = {
+			username: this.state.username,
+			password: this.state.password
+		}
+		let disabledBtn = true;
+		if(userData.username.length > 0 && userData.password.length > 0) {
+				disabledBtn = false;
+		}
+		let button = <button disabled={disabledBtn}>Submit</button>
 	    return (
 			<div className="card">
 			<div className="card-header">  Login to our site  </div>
@@ -53,9 +73,10 @@ class Login extends Component {
 					</div>
 				</div>
 				
-				<button className="mt-2"> Submit </button>
+				
+				{/* <button className="mt-2"> Submit </button> */}
 				{/* <button disabled = {this.state.terms ? false : true}> Submit </button> */}
-				{/* {button} */}
+				{button}
 			</form>
 			</div>
 			</div>
