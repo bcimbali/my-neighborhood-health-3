@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import {GoogleApiWrapper} from 'google-maps-react';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
-import dummyData from "../../dummyData.json";
+import dummyData from "../../data/converted.json";
 import orangeDiamond from "./../../orange-diamond.ico"
 
 export class MapContainer extends Component {
@@ -35,7 +35,7 @@ export class MapContainer extends Component {
         .then(results => {
           return results.json();
         }).then(data => {
-          console.log('data', data);
+          // console.log('data', data);
           let markers = data.map((tile) => {
             return (<Marker
             key={tile.TRI_FACILITY_ID}
@@ -45,11 +45,12 @@ export class MapContainer extends Component {
             position={{lat: tile.PREF_LATITUDE, lng: `-${tile.PREF_LONGITUDE}`}} />
           )});
           this.setState({markers: markers});
-          console.log(this.state.markers)
+          // console.log(this.state.markers)
         })
       };
 
     render() {
+      console.log(dummyData);
 
         const style = {
             height: '100vh',
@@ -388,6 +389,7 @@ export class MapContainer extends Component {
           }
         ]
         const data=dummyData;
+        console.log('mikesDataTest', data);
         //the purpose of this const is to create a data variable so that we can utilize the dummy data in our marker.
       return (
         
