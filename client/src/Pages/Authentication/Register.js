@@ -50,7 +50,7 @@ class Register extends Component {
 		// }
 	  return (
 		<div className="card">
-		<div className="card-header">  Login to our site  </div>
+		<div className="card-header">  Register for our site  </div>
 		<div className="card-body">
 		<form onSubmit = {this.handleSubmit}>
             <div className="field">

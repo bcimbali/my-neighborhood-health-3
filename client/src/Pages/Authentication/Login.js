@@ -29,7 +29,17 @@ class Login extends Component {
 		console.log("Inside handleSubmit");
 		console.log(userData);
 		axios.post('/api/authentication/login', userData)
-			.then(res => res.data, console.log(userData))
+		.then(function (response) {
+			window.location = response.data.redirect
+			
+			// const path = '/news';
+			//console.log(response.data.redirect)
+			//console.log(this.props.history)
+        	//this.props.history.push('/news');
+		  })
+			
+			//.then(res => this.props.history.push("/"))
+			//.then(res => res.data, console.log(userData))
 			.catch(err => console.error("Wasn't able to authenticate in database.", err))
 		}	
 
