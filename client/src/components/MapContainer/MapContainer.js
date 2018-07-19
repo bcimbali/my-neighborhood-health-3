@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 // import {GoogleApiWrapper} from 'google-maps-react';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
-import dummyData from "../../dummyData.json";
+//import dummyData60611 from "../../data/converted.json";
 import orangeDiamond from "./../../orange-diamond.ico"
+//import ILData from "../../data/IL_TRI.json";
+import USAData from "../../data/USA_TRI.json";
+
 
 // ...
 
@@ -32,23 +35,19 @@ export class MapContainer extends Component {
         }
       };
 
-      componentWillMount() {
-        fetch('https://iaspub.epa.gov/enviro/efservice/tri_facility/zip_code/BEGINNING/6060/JSON')
-        .then(results => {
-          return results.json();
-        }).then(data => {
-          console.log('data', data);
-          let markers = data.map((tile) => {
+      componentDidMount() {
+          let markers = USAData.map((tile) => {
+           tile=tile.tri_facility;
+           //console.log(tile);
             return (<Marker
             key={tile.TRI_FACILITY_ID}
             title={tile.FACILITY_NAME}
             icon={{url: orangeDiamond}} 
-            name={tile.STATE_ABBR}
+            name={tile.FACILITY_NAME}
             position={{lat: tile.PREF_LATITUDE, lng: `-${tile.PREF_LONGITUDE}`}} />
           )});
-          this.setState({markers: markers});
-          console.log(this.state.markers)
-        })
+          this.setState({markers: markers},()=> console.log(this.state.markers));
+          //console.log(this.state.markers)
       };
 
     render() {
@@ -389,7 +388,8 @@ export class MapContainer extends Component {
             ]
           }
         ]
-        const data=dummyData;
+        const data= USAData;
+        //console.log("mikesCleanDataTest", data);
         //the purpose of this const is to create a data variable so that we can utilize the dummy data in our marker.
       return (
         
@@ -406,6 +406,7 @@ export class MapContainer extends Component {
        >
 
         {this.state.markers}
+        {console.log("this.state.markers", this.state.markers)}
           
           <InfoWindow onClose={this.onInfoWindowClose}>
               <div>
