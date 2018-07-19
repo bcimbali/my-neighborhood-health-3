@@ -35,21 +35,34 @@ class Register extends Component {
                 password: this.state.password,
                 passwordConf: this.state.passwordConf
             }
-            console.log(userData)
+			console.log(userData)
 			axios.post('/api/authentication/register', userData)
             .then(function (response) {
 				window.location = response.data.redirect
 			})
-            .catch(err => console.error("Wasn't able to update the database.", err))
-        }
+			.catch(err => console.error("Wasn't able to update the database.", err))
+		} 
+        
+	
+	
+	
 	
   
 	render() {
-		// let disabledBtn = true;
-		// let button = <button disabled={disabledBtn}>Submit</button>
-		// if(this.state.email.length > 0 && this.state.password.length > 0) {
-		// 	disabledBtn = false;
-		// }
+		const userData = {
+			username: this.state.username,
+			email: this.state.email,
+			password: this.state.password,
+			passwordConf: this.state.passwordConf
+		}
+
+		let disabledBtn = true;
+		
+		if(this.state.password.length === this.state.passwordConf.length && this.state.terms === true) {
+			disabledBtn = false;
+		}
+		let button = <button disabled={disabledBtn}>Submit</button>
+		  
 	  return (
 		<div className="card">
 		<div className="card-header">  Register for our site  </div>
@@ -70,13 +83,13 @@ class Register extends Component {
 			<div className="field mt-2">
 			<label className="label">Password</label>
 				<div className="control">
-					<input className="input" type="text" name="password" placeholder="Enter password" value={this.state.password} onChange={this.handleChange}/>
+					<input className="input" type="text" name="password" placeholder="Enter password" value={this.state.password} onChange={this.handleChange} onKeyUp={this.check}/>
 				</div>
 			</div>
             <div className="field mt-2">
 			<label className="label">Password Confirmation</label>
 				<div className="control">
-					<input className="input" type="text" name="passwordConf" placeholder="Enter password again" value={this.state.passwordConf} onChange={this.handleChange}/>
+					<input className="input" type="text" name="passwordConf" placeholder="Enter password again" value={this.state.passwordConf} onChange={this.handleChange} onKeyUp={this.check}/>
 				</div>
 			</div>
 			<div className="field mt-2">
@@ -92,8 +105,8 @@ class Register extends Component {
 					</label>
 				</div>
 			</div>
-			<button className="mt-2" disabled = {this.state.terms ? false : true}> Submit </button>
-			{/* {button} */}
+			{/* <button className="mt-2" disabled = {this.state.terms ? false : true}> Submit </button> */}
+			{button}
 		</form>
 		</div>
 		</div>
