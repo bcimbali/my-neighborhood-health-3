@@ -37,7 +37,9 @@ class Register extends Component {
             }
             console.log(userData)
 			axios.post('/api/authentication/register', userData)
-            .then(res => res.data)
+            .then(function (response) {
+				window.location = response.data.redirect
+			})
             .catch(err => console.error("Wasn't able to update the database.", err))
         }
 	
@@ -50,7 +52,7 @@ class Register extends Component {
 		// }
 	  return (
 		<div className="card">
-		<div className="card-header">  Login to our site  </div>
+		<div className="card-header">  Register for our site  </div>
 		<div className="card-body">
 		<form onSubmit = {this.handleSubmit}>
             <div className="field">
