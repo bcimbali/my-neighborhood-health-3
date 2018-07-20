@@ -17,6 +17,8 @@ export class MapContainer extends Component {
         showingInfoWindow: false,
         activeMarker: {},
         selectedPlace: {},
+        userLocation: null,
+
       }
       this.onMarkerClick = this.onMarkerClick.bind(this);
     }
@@ -41,6 +43,11 @@ export class MapContainer extends Component {
       };
 
       componentDidMount() {
+        //locating the user and seeking the user's location to center the map.
+        navigator.geolocation.getCurrentPosition((position) =>{
+          this.setState({userLocation: {lat: position.coords.latitude, lng: position.coords.longitude}});
+          
+        });
           let markers = USAData.map((tile) => {
            tile=tile.tri_facility;
            //console.log(tile);
@@ -396,16 +403,19 @@ export class MapContainer extends Component {
         const data= USAData;
         //console.log("mikesCleanDataTest", data);
         //the purpose of this const is to create a data variable so that we can utilize the dummy data in our marker.
-      return (
+      //we create a const to store the user's location
+      const whereYouAre= this.state.userLocation || {lat: 41.8781,lng: -87.6298};
+      //const whereYouAre= {lat:41.918990799999996,lng:-87.6760527}
+      console.log("where are you", whereYouAre);
+
+
+        return (
         
 
         <Map
          google={this.props.google}
          styles={styles}
-         initialCenter={{
-           lat: 41.8781,
-           lng: -87.6298
-         }}
+         initialCenter={whereYouAre}
          zoom={14}
          onClick={this.onMapClicked}
        >
