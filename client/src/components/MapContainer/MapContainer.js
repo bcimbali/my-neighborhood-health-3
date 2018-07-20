@@ -39,12 +39,22 @@ export class MapContainer extends Component {
           let markers = USAData.map((tile) => {
            tile=tile.tri_facility;
            //console.log(tile);
-            return (<Marker
-            key={tile.TRI_FACILITY_ID}
-            title={tile.FACILITY_NAME}
-            icon={{url: orangeDiamond}} 
-            name={tile.FACILITY_NAME}
-            position={{lat: tile.PREF_LATITUDE, lng: `-${tile.PREF_LONGITUDE}`}} />
+            return (
+            <div>
+              <Marker
+              key={tile.TRI_FACILITY_ID}
+              title={tile.FACILITY_NAME}
+              icon={{url: orangeDiamond}} 
+              name={tile.FACILITY_NAME}
+              position={{lat: tile.PREF_LATITUDE, lng: `-${tile.PREF_LONGITUDE}`}} />
+              <InfoWindow 
+              name={tile.FACILITY_NAME}
+              onClose={this.onInfoWindowClose}>
+                <div>
+                  <h1>{this.state.selectedPlace.name}</h1>
+                </div>
+            </InfoWindow>
+          </div>
           )});
           this.setState({markers: markers},()=> console.log(this.state.markers));
           //console.log(this.state.markers)
