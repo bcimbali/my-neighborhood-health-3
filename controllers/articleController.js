@@ -2,12 +2,13 @@ var axios = require("axios");
 var cheerio = require("cheerio");
 
 module.exports = {
-    getArticles: function (req, response) {
+    getArticles: function (req, res) {
         axios
             .get("https://www.npr.org/sections/environment/")
-            .then(response => {
+            .then(response => 
+                 {
                 let $ = cheerio.load(response.data);
-                //console.log(response);
+              
                 let results = [];
                 $("a", ".title").each(function (i, element) {
                     results.push({
@@ -16,9 +17,7 @@ module.exports = {
                     });
                     
                 });
-                return (results);
-                    }).then((results) => {
-                        console.log(results);
+                res.json(results);
                 
             });
     }
