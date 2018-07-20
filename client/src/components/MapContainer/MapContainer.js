@@ -17,14 +17,19 @@ export class MapContainer extends Component {
         showingInfoWindow: false,
         activeMarker: {},
         selectedPlace: {},
-      };
+      }
+      this.onMarkerClick = this.onMarkerClick.bind(this);
     }
-      onMarkerClick = (props, marker, e) =>
-        this.setState({
+
+
+      onMarkerClick = (props, marker, e) => {
+        console.log(props);
+          this.setState({
           selectedPlace: props,
           activeMarker: marker,
           showingInfoWindow: true
         });
+      }
     
       onMapClicked = (props) => {
         if (this.state.showingInfoWindow) {
@@ -44,18 +49,18 @@ export class MapContainer extends Component {
             title={tile.FACILITY_NAME}
             icon={{url: orangeDiamond}} 
             name={tile.FACILITY_NAME}
+            onClick={this.onMarkerClick}
+            street_address={tile.STREET_ADDRESS}
+            state_abbr={tile.STATE_ABBR}
+            city_name={tile.CITY_NAME}
             position={{lat: tile.PREF_LATITUDE, lng: `-${tile.PREF_LONGITUDE}`}} />
+              
           )});
-          this.setState({markers: markers},()=> console.log(this.state.markers));
-          //console.log(this.state.markers)
+          this.setState({markers: markers},()=> console.log('Whatever'));
+          // console.log(this.state.markers)
       };
 
     render() {
-
-        const style = {
-            height: '100vh',
-            width: '100vw'
-        }
 
         const styles = [
           {
@@ -406,13 +411,22 @@ export class MapContainer extends Component {
        >
 
         {this.state.markers}
-        {console.log("this.state.markers", this.state.markers)}
-          
-          <InfoWindow onClose={this.onInfoWindowClose}>
-              <div>
-                <h1>{this.state.selectedPlace.name}</h1>
-              </div>
-          </InfoWindow>
+        <InfoWindow
+          marker = { this.state.activeMarker }
+          visible = { this.state.showingInfoWindow }
+        >
+        <h1>{this.state.selectedPlace.name}</h1>
+        <p>{this.state.selectedPlace.street_address}</p>
+        <p>{this.state.selectedPlace.city_name}, {this.state.selectedPlace.state_abbr}</p>
+        <h4>Chemicals:</h4>
+        <p>Will be listed here...</p>
+        <h4>Any Chemicals Known Carcinogens?</h4>
+        <p>Yes or no listed here...</p>
+        <h4>Compliance History:</h4>
+        <p>Compliance icon</p>
+        <h4>Are you a concerned neighbor?</h4>
+        <button class="button"></button>
+        </InfoWindow>
         </Map>
       );
     }

@@ -43,8 +43,18 @@ class Login extends Component {
 			.catch(err => console.error("Wasn't able to authenticate in database.", err))
 		}	
 
+		
   
 	render() {
+		const userData = {
+			username: this.state.username,
+			password: this.state.password
+		}
+		let disabledBtn = true;
+		if(userData.username.length > 0 && userData.password.length > 0) {
+				disabledBtn = false;
+		}
+		let button = <button disabled={disabledBtn}>Submit</button>
 	    return (
 			<div className="card">
 			<div className="card-header">  Login to our site  </div>
@@ -63,9 +73,10 @@ class Login extends Component {
 					</div>
 				</div>
 				
-				<button className="mt-2"> Submit </button>
+				
+				{/* <button className="mt-2"> Submit </button> */}
 				{/* <button disabled = {this.state.terms ? false : true}> Submit </button> */}
-				{/* {button} */}
+				{button}
 			</form>
 			</div>
 			</div>
