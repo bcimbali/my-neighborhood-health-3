@@ -60,6 +60,7 @@ export class MapContainer extends Component {
             street_address={tile.STREET_ADDRESS}
             state_abbr={tile.STATE_ABBR}
             city_name={tile.CITY_NAME}
+            zip_code={tile.ZIP_CODE}
             position={{lat: tile.PREF_LATITUDE, lng: `-${tile.PREF_LONGITUDE}`}} />
               
           )});
@@ -428,7 +429,7 @@ export class MapContainer extends Component {
         <div>
           <h1>{this.state.selectedPlace.name}</h1>
           <p>{this.state.selectedPlace.street_address}</p>
-          <p>{this.state.selectedPlace.city_name}, {this.state.selectedPlace.state_abbr}</p>
+          <p>{this.state.selectedPlace.city_name}, {this.state.selectedPlace.state_abbr} {this.state.selectedPlace.zip_code}</p>
           <h4>Chemicals:</h4>
           <p>Will be listed here...</p>
           <h4>Any Chemicals Known Carcinogens?</h4>
@@ -436,7 +437,7 @@ export class MapContainer extends Component {
           <h4>Compliance History:</h4>
           <p>Compliance icon</p>
           <h4>Are you a concerned neighbor?</h4>
-          <button class="button"></button>
+          <button className="button"></button>
         </div>
         </InfoWindow>
         </Map>
