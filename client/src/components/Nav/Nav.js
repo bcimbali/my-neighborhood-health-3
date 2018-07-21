@@ -10,11 +10,20 @@ class Nav extends Component {
 
     componentDidMount(){
         axios.get('/api/authentication/profile')
-    .then(function (response) {
-    console.log("authenticated user!", response.body);
-
-    })
+        .then(res => this.setState({isAuthenticated: res.data.authentication}))
+          
+       
     }
+
+    handleClick = (event) => {
+      console.log("I'm in the logout button");
+          event.preventDefault();
+          axios.get('/api/authentication/logout')
+      .then(function (response) {
+        window.location = response.data.redirect
+      })
+      }	
+
     render() {
       return (
         <ul className="nav nav-tabs">
@@ -28,6 +37,7 @@ class Nav extends Component {
               Home
             </Link>
           </li>
+          
           <li className="nav-item">
             <Link
               to="/communities"
@@ -48,16 +58,28 @@ class Nav extends Component {
               News
             </Link>
           </li>
-          <li className="nav-item">
-            <Link
-              to="/authentication"
-              className={
-                window.location.pathname === "/authentication" ? "nav-link active" : "nav-link"
-              }
-            >
-              Login/Register
-            </Link>
-          </li>
+          
+            {this.state.isAuthenticated === false ? (
+                <li className="nav-item">
+               
+              <Link
+                to="/authentication"
+                className={
+                  window.location.pathname === "/authentication" ? "nav-link active" : "nav-link"
+                }
+              >
+                Login/Register
+              </Link>
+              </li>
+              
+            ): (
+              <li className="nav-item">
+                <button className="mt-2" onClick = {this.handleClick}> Logout </button>
+			        </li>
+            )
+          }
+            
+          
         </ul>
       );
   }

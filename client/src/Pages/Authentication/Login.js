@@ -8,7 +8,6 @@ class Login extends Component {
 		username: '',
 		password: '',
 		terms: false,
-		loggedIn: false,
 	}
 
 	handleChange = (event) => {
@@ -72,7 +71,7 @@ class Login extends Component {
 				{/* <button className="mt-2"> Submit </button> */}
 				{/* <button disabled = {this.state.terms ? false : true}> Submit </button> */}
 				{button}
-				<button disabled = {this.state.loggedIn ? false : true}> Test </button>
+				
 			</form>
 			</div>
 			</div>
