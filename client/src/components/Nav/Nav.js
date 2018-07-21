@@ -34,6 +34,16 @@ const Nav = () => (
         News
       </Link>
     </li>
+    <li className="nav-item">
+      <Link
+        to="/authentication"
+        className={
+          window.location.pathname === "/authentication" ? "nav-link active" : "nav-link"
+        }
+      >
+        Login/Register
+      </Link>
+    </li>
   </ul>
 );
 
