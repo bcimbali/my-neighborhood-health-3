@@ -400,7 +400,7 @@ export class MapContainer extends Component {
             ]
           }
         ]
-        const data= USAData;
+        // const data= USAData;
         //console.log("mikesCleanDataTest", data);
         //the purpose of this const is to create a data variable so that we can utilize the dummy data in our marker.
       //we create a const to store the user's location
