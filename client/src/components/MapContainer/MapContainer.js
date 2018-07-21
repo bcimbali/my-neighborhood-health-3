@@ -425,17 +425,19 @@ export class MapContainer extends Component {
           marker = { this.state.activeMarker }
           visible = { this.state.showingInfoWindow }
         >
-        <h1>{this.state.selectedPlace.name}</h1>
-        <p>{this.state.selectedPlace.street_address}</p>
-        <p>{this.state.selectedPlace.city_name}, {this.state.selectedPlace.state_abbr}</p>
-        <h4>Chemicals:</h4>
-        <p>Will be listed here...</p>
-        <h4>Any Chemicals Known Carcinogens?</h4>
-        <p>Yes or no listed here...</p>
-        <h4>Compliance History:</h4>
-        <p>Compliance icon</p>
-        <h4>Are you a concerned neighbor?</h4>
-        <button class="button"></button>
+        <div>
+          <h1>{this.state.selectedPlace.name}</h1>
+          <p>{this.state.selectedPlace.street_address}</p>
+          <p>{this.state.selectedPlace.city_name}, {this.state.selectedPlace.state_abbr}</p>
+          <h4>Chemicals:</h4>
+          <p>Will be listed here...</p>
+          <h4>Any Chemicals Known Carcinogens?</h4>
+          <p>Yes or no listed here...</p>
+          <h4>Compliance History:</h4>
+          <p>Compliance icon</p>
+          <h4>Are you a concerned neighbor?</h4>
+          <button class="button"></button>
+        </div>
         </InfoWindow>
         </Map>
       );
