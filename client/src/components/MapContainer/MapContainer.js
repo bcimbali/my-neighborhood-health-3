@@ -6,6 +6,7 @@ import orangeDiamond from "./../../orange-diamond.ico"
 import magentaMarker from "./../../magenta_marker.ico"
 //import ILData from "../../data/IL_TRI.json";
 import USAData from "../../data/USA_TRI.json";
+import Sidebar from "./../Sidebar";
 
 
 // ...
@@ -32,6 +33,11 @@ export class MapContainer extends Component {
           activeMarker: marker,
           showingInfoWindow: true
         });
+      }
+
+      onButtonClick = (props) => {
+        this.setState({displayMarkers: this.state.markers.filter(marker => marker.props.state_abbr != 'IL')});
+        
       }
     
       onMapClicked = (props) => {
@@ -412,39 +418,43 @@ export class MapContainer extends Component {
 
 
         return (
-        
-
-        <Map
-         google={this.props.google}
-         styles={styles}
-         initialCenter={whereYouAre}
-         zoom={14}
-         onClick={this.onMapClicked}
-       >
-       <Marker
-          name={'Current location'}
-          icon={magentaMarker} />
-
-        {this.state.markers}
-        <InfoWindow
-          marker = { this.state.activeMarker }
-          visible = { this.state.showingInfoWindow }
+        <div className="">
+          <button className="btn btn-success"
+          onClick={this.onButtonClick}>
+          Filter
+          </button>
+          <Map
+          google={this.props.google}
+          styles={styles}
+          initialCenter={whereYouAre}
+          zoom={14}
+          onClick={this.onMapClicked}
         >
-          <div>
-            <h1>{this.state.selectedPlace.name}</h1>
-            <p>{this.state.selectedPlace.street_address}</p>
-            <p>{this.state.selectedPlace.city_name}, {this.state.selectedPlace.state_abbr} {this.state.selectedPlace.zip_code}</p>
-            <h4>Chemicals:</h4>
-            <p>Will be listed here...</p>
-            <h4>Any Chemicals Known Carcinogens?</h4>
-            <p>Yes or no listed here...</p>
-            <h4>Compliance History:</h4>
-            <p>Compliance icon</p>
-            <h4>Are you a concerned neighbor?</h4>
-            <button className="button"></button>
-          </div>
-        </InfoWindow>
-        </Map>
+        <Marker
+            name={'Current location'}
+            icon={magentaMarker} />
+
+          {this.state.markers}
+          <InfoWindow
+            marker = { this.state.activeMarker }
+            visible = { this.state.showingInfoWindow }
+          >
+            <div>
+              <h1>{this.state.selectedPlace.name}</h1>
+              <p>{this.state.selectedPlace.street_address}</p>
+              <p>{this.state.selectedPlace.city_name}, {this.state.selectedPlace.state_abbr} {this.state.selectedPlace.zip_code}</p>
+              <h4>Chemicals:</h4>
+              <p>Will be listed here...</p>
+              <h4>Any Chemicals Known Carcinogens?</h4>
+              <p>Yes or no listed here...</p>
+              <h4>Compliance History:</h4>
+              <p>Compliance icon</p>
+              <h4>Are you a concerned neighbor?</h4>
+              <button className="button"></button>
+            </div>
+          </InfoWindow>
+          </Map>
+        </div>
       );
     }
   }

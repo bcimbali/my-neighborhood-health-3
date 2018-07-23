@@ -13,7 +13,7 @@ class App extends Component {
     return (
 
       <Router>
-        <div>
+        <div className="main-page">
           <Nav />
           <Route exact path="/communities" component={Communities} />
           <Route exact path="/news" component={News} />
