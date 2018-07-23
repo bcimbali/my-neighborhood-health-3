@@ -1,8 +1,14 @@
-import React from "react";
+import React, {Component} from "react";
+import "./Communities.css";
+import ThreadDisplay from "../ThreadDisplay";
 
-const Communities = () => (
-    <div>
-    </div>
-);
+
+class Communities extends Component {
+    render() {
+        return (
+            <ThreadDisplay />
+        );
+    }
+}
 
 export default Communities;

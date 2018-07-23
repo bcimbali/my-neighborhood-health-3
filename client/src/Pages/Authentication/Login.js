@@ -32,11 +32,7 @@ class Login extends Component {
 		.then(function (response) {
 			window.location = response.data.redirect
 			
-			// const path = '/news';
-			//console.log(response.data.redirect)
-			//console.log(this.props.history)
-        	//this.props.history.push('/news');
-		  })
+		})
 			
 			//.then(res => this.props.history.push("/"))
 			//.then(res => res.data, console.log(userData))
@@ -72,11 +68,10 @@ class Login extends Component {
 						<input className="input form-control" type="text" name="password" placeholder="Enter password" value={this.state.password} onChange={this.handleChange}/>
 					</div>
 				</div>
-				
-				
 				{/* <button className="mt-2"> Submit </button> */}
 				{/* <button disabled = {this.state.terms ? false : true}> Submit </button> */}
 				{button}
+				
 			</form>
 			</div>
 			</div>

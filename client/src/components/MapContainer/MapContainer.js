@@ -20,7 +20,7 @@ export class MapContainer extends Component {
         activeMarker: {},
         selectedPlace: {},
         userLocation: null,
-
+        displayMarkers: []
       }
       this.onMarkerClick = this.onMarkerClick.bind(this);
     }
@@ -35,9 +35,9 @@ export class MapContainer extends Component {
         });
       }
 
-      onButtonClick = (props) => {
-        this.setState({displayMarkers: this.state.markers.filter(marker => marker.props.state_abbr != 'IL')});
-        
+      onILClick = (props) => {
+        this.setState({displayMarkers: this.state.displayMarkers.filter(marker => marker.props.state_abbr == 'IL')});
+        console.log('displayMarkers: ', this.state.displayMarkers);
       }
     
       onMapClicked = (props) => {
@@ -55,7 +55,7 @@ export class MapContainer extends Component {
           this.setState({userLocation: {lat: position.coords.latitude, lng: position.coords.longitude}});
           
         });
-          let markers = USAData.map((tile) => {
+          let displayMarkers = USAData.map((tile) => {
            tile=tile.tri_facility;
            //console.log(tile);
             return (<Marker
@@ -71,7 +71,7 @@ export class MapContainer extends Component {
             position={{lat: tile.PREF_LATITUDE, lng: `-${tile.PREF_LONGITUDE}`}} />
               
           )});
-          this.setState({markers: markers},()=> console.log('Whatever'));
+          this.setState({displayMarkers: displayMarkers},()=> console.log('Whatever'));
           // console.log(this.state.markers)
       };
 
@@ -420,8 +420,8 @@ export class MapContainer extends Component {
         return (
         <div className="">
           <button className="btn btn-success"
-          onClick={this.onButtonClick}>
-          Filter
+          onClick={this.onILClick}>
+          IL
           </button>
           <Map
           google={this.props.google}
@@ -434,7 +434,7 @@ export class MapContainer extends Component {
             name={'Current location'}
             icon={magentaMarker} />
 
-          {this.state.markers}
+          {this.state.displayMarkers}
           <InfoWindow
             marker = { this.state.activeMarker }
             visible = { this.state.showingInfoWindow }
