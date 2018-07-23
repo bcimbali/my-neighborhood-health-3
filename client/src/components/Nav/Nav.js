@@ -74,7 +74,7 @@ class Nav extends Component {
               
             ): (
               <li className="nav-item">
-                <button className="mt-2" onClick = {this.handleClick}> Logout </button>
+                <button className="m-2 btn btn-primary" onClick = {this.handleClick}> Logout </button>
 			        </li>
             )
           }
