@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 // import {GoogleApiWrapper} from 'google-maps-react';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
-//import dummyData60611 from "../../data/converted.json";
 import orangeDiamond from "./../../orange-diamond.ico"
 import magentaMarker from "./../../magenta_marker.ico"
-//import ILData from "../../data/IL_TRI.json";
 import USAData from "../../data/USA_TRI.json";
-import Sidebar from "./../Sidebar";
 
 
 // ...
@@ -36,7 +33,32 @@ export class MapContainer extends Component {
       }
 
       onILClick = (props) => {
-        this.setState({displayMarkers: this.state.displayMarkers.filter(marker => marker.props.state_abbr == 'IL')});
+        this.setState({displayMarkers: this.state.markers.filter(marker => marker.props.state_abbr === 'IL')});
+        console.log('displayMarkers: ', this.state.displayMarkers);
+      }
+
+      onCookCountyClick = (props) => {
+        this.setState({displayMarkers: this.state.markers.filter(marker => marker.props.county === 'COOK')});
+        console.log('displayMarkers: ', this.state.displayMarkers);
+      }
+
+      onLAClick = (props) => {
+        this.setState({displayMarkers: this.state.markers.filter(marker => marker.props.city_name === 'LOS ANGELES')});
+        console.log('displayMarkers: ', this.state.displayMarkers);
+      }
+
+      onSFClick = (props) => {
+        this.setState({displayMarkers: this.state.markers.filter(marker => marker.props.city_name === 'SAN FRANCISCO')});
+        console.log('displayMarkers: ', this.state.displayMarkers);
+      }
+
+      onNYCClick = (props) => {
+        this.setState({displayMarkers: this.state.markers.filter(marker => marker.props.county === 'QUEENS' || marker.props.county === 'KINGS' || marker.props.county === 'NEW YORK' || marker.props.city_name === 'STATEN ISLAND' || marker.props.county === 'BRONX')});
+        console.log('displayMarkers: ', this.state.displayMarkers);
+      }
+
+      onUSAClick = (props) => {
+        this.setState({displayMarkers: this.state.markers});
         console.log('displayMarkers: ', this.state.displayMarkers);
       }
     
@@ -68,10 +90,11 @@ export class MapContainer extends Component {
             state_abbr={tile.STATE_ABBR}
             city_name={tile.CITY_NAME}
             zip_code={tile.ZIP_CODE}
+            county={tile.COUNTY_NAME}
             position={{lat: tile.PREF_LATITUDE, lng: `-${tile.PREF_LONGITUDE}`}} />
               
           )});
-          this.setState({displayMarkers: displayMarkers},()=> console.log('Whatever'));
+          this.setState({displayMarkers: displayMarkers, markers: displayMarkers});
           // console.log(this.state.markers)
       };
 
@@ -419,15 +442,35 @@ export class MapContainer extends Component {
 
         return (
         <div className="">
-          <button className="btn btn-success"
+          <button className="btn filter-btn m-1"
+          onClick={this.onUSAClick}>
+          USA
+          </button>
+          <button className="btn filter-btn m-1"
           onClick={this.onILClick}>
           IL
+          </button>
+          <button className="btn filter-btn m-1"
+          onClick={this.onCookCountyClick}>
+          Cook County
+          </button>
+          <button className="btn filter-btn m-1"
+          onClick={this.onLAClick}>
+          Los Angeles
+          </button>
+          <button className="btn filter-btn m-1"
+          onClick={this.onSFClick}>
+          SF
+          </button>
+          <button className="btn filter-btn m-1"
+          onClick={this.onNYCClick}>
+          NYC
           </button>
           <Map
           google={this.props.google}
           styles={styles}
           initialCenter={whereYouAre}
-          zoom={14}
+          zoom={5}
           onClick={this.onMapClicked}
         >
         <Marker

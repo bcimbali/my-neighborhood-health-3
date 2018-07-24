@@ -40,6 +40,15 @@
   cursor: pointer;
 }
 
+.filter-btn {
+  background-color: #293E68;
+  color: orange;
+}
+
+.filter-btn:hover {
+  background-color: #2E6370;
+}
+
 .main-page {
   height: 100vh;
 }
