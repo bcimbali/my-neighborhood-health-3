@@ -472,6 +472,7 @@ export class MapContainer extends Component {
           NYC
           </button>
           <Map
+          className='map-height'
           google={this.props.google}
           styles={styles}
           initialCenter={whereYouAre}

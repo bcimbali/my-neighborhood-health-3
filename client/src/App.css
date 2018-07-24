@@ -22,6 +22,9 @@
   font-size: large;
 }
 
+.map-height {
+  max-height: 89vh;
+}
 
 .button {
   padding: 6px 24px;
