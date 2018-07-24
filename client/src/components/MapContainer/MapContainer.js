@@ -52,6 +52,21 @@ export class MapContainer extends Component {
         console.log('displayMarkers: ', this.state.displayMarkers);
       }
 
+      onAtlantaClick = (props) => {
+        this.setState({displayMarkers: this.state.markers.filter(marker => marker.props.city_name === 'ATLANTA' && marker.props.state_abbr === 'GA')});
+        console.log('displayMarkers: ', this.state.displayMarkers);
+      }
+
+      onDetroitClick = (props) => {
+        this.setState({displayMarkers: this.state.markers.filter(marker => marker.props.city_name === 'DETROIT' && marker.props.state_abbr === 'MI')});
+        console.log('displayMarkers: ', this.state.displayMarkers);
+      }
+
+      onSeattleClick = (props) => {
+        this.setState({displayMarkers: this.state.markers.filter(marker => marker.props.city_name === 'SEATTLE' && marker.props.state_abbr === 'WA')});
+        console.log('displayMarkers: ', this.state.displayMarkers);
+      }
+
       onNYCClick = (props) => {
         this.setState({displayMarkers: this.state.markers.filter(marker => marker.props.county === 'QUEENS' || marker.props.county === 'KINGS' || marker.props.county === 'NEW YORK' || marker.props.city_name === 'STATEN ISLAND' || marker.props.county === 'BRONX')});
         console.log('displayMarkers: ', this.state.displayMarkers);
@@ -470,6 +485,18 @@ export class MapContainer extends Component {
           <button className="btn filter-btn m-1"
           onClick={this.onNYCClick}>
           NYC
+          </button>
+          <button className="btn filter-btn m-1"
+          onClick={this.onAtlantaClick}>
+          Atlanta
+          </button>
+          <button className="btn filter-btn m-1"
+          onClick={this.onSeattleClick}>
+          Seattle
+          </button>
+          <button className="btn filter-btn m-1"
+          onClick={this.onDetroitClick}>
+          Detroit
           </button>
           <Map
           className='map-height'
