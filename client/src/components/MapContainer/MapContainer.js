@@ -17,7 +17,7 @@ export class MapContainer extends Component {
         activeMarker: {},
         selectedPlace: {},
         userLocation: null,
-        displayMarkers: []
+        displayMarkers: [],
       }
       this.onMarkerClick = this.onMarkerClick.bind(this);
     }
@@ -28,7 +28,7 @@ export class MapContainer extends Component {
           this.setState({
           selectedPlace: props,
           activeMarker: marker,
-          showingInfoWindow: true
+          showingInfoWindow: true,
         });
       }
 
@@ -71,6 +71,10 @@ export class MapContainer extends Component {
         }
       };
 
+      createComplianceURL = (props) => {
+        return <a href={this.state.selectedPlace.echoURL} target="_blank"><i className="far fa-3x fa-folder-open"></i></a>;
+      }
+
       componentDidMount() {
         //locating the user and seeking the user's location to center the map.
         navigator.geolocation.getCurrentPosition((position) =>{
@@ -85,6 +89,7 @@ export class MapContainer extends Component {
             title={tile.FACILITY_NAME}
             icon={{url: orangeDiamond}} 
             name={tile.FACILITY_NAME}
+            echoURL={'https://echo.epa.gov/detailed-facility-report?fid=' + tile.TRI_FACILITY_ID}
             onClick={this.onMarkerClick}
             street_address={tile.STREET_ADDRESS}
             state_abbr={tile.STATE_ABBR}
@@ -486,13 +491,8 @@ export class MapContainer extends Component {
               <h1>{this.state.selectedPlace.name}</h1>
               <p>{this.state.selectedPlace.street_address}</p>
               <p>{this.state.selectedPlace.city_name}, {this.state.selectedPlace.state_abbr} {this.state.selectedPlace.zip_code}</p>
-              <h4>Chemicals:</h4>
-              <p>Will be listed here...</p>
-              <h4>Any Chemicals Known Carcinogens?</h4>
-              <p>Yes or no listed here...</p>
               <h4>Compliance History:</h4>
-              <p>Compliance icon</p>
-              <h4>Are you a concerned neighbor?</h4>
+              {this.createComplianceURL()}
               <button className="button"></button>
             </div>
           </InfoWindow>
