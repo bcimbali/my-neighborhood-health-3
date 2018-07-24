@@ -4,9 +4,8 @@ import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 import orangeDiamond from "./../../orange-diamond.ico"
 import magentaMarker from "./../../magenta_marker.ico"
 import USAData from "../../data/USA_TRI.json";
+import UserSearch from "../UserSearch/UserSearch.js";
 
-
-// ...
 
 export class MapContainer extends Component {
     constructor() {
@@ -98,6 +97,11 @@ export class MapContainer extends Component {
         });
           let displayMarkers = USAData.map((tile) => {
            tile=tile.tri_facility;
+           let zipCode= 60614;
+           console.log(tile.ZIP_CODE);
+           if(zipCode==tile.ZIP_CODE){
+
+           
            //console.log(tile);
             return (<Marker
             key={tile.TRI_FACILITY_ID}
@@ -113,7 +117,8 @@ export class MapContainer extends Component {
             county={tile.COUNTY_NAME}
             position={{lat: tile.PREF_LATITUDE, lng: `-${tile.PREF_LONGITUDE}`}} />
               
-          )});
+          )};
+        });
           this.setState({displayMarkers: displayMarkers, markers: displayMarkers});
           // console.log(this.state.markers)
       };
@@ -462,6 +467,7 @@ export class MapContainer extends Component {
 
         return (
         <div className="">
+          <UserSearch/>
           <button className="btn filter-btn m-1"
           onClick={this.onUSAClick}>
           USA
