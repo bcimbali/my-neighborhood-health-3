@@ -89,7 +89,8 @@ export class MapContainer extends Component {
         return <a href={this.state.selectedPlace.echoURL} target="_blank"><i className="far fa-3x fa-folder-open"></i></a>;
       }
       search = (zip) => {
-        console.log("search:", zip)
+        console.log("search:", zip);
+        this.setState({displayMarkers: this.state.markers.filter(marker => marker.props.zip_code === zip)});
         //set the state to the zip value
 
       }
@@ -105,7 +106,6 @@ export class MapContainer extends Component {
            tile=tile.tri_facility;
            let zipCode= 60614;
            //console.log(tile.ZIP_CODE);
-           if(zipCode==tile.ZIP_CODE){
 
            
            //console.log(tile);
@@ -123,7 +123,7 @@ export class MapContainer extends Component {
             county={tile.COUNTY_NAME}
             position={{lat: tile.PREF_LATITUDE, lng: `-${tile.PREF_LONGITUDE}`}} />
               
-          )};
+          );
         });
           this.setState({displayMarkers: displayMarkers, markers: displayMarkers});
           // console.log(this.state.markers)
@@ -473,7 +473,9 @@ export class MapContainer extends Component {
 
         return (
         <div className="">
+          
           <UserSearch zipCodeSearch={this.search}/>
+
           <button className="btn filter-btn m-1"
           onClick={this.onUSAClick}>
           USA
