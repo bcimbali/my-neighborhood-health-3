@@ -23,7 +23,7 @@ export class MapContainer extends Component {
 
 
       onMarkerClick = (props, marker, e) => {
-        console.log(props);
+        //console.log(props);
           this.setState({
           selectedPlace: props,
           activeMarker: marker,
@@ -33,47 +33,47 @@ export class MapContainer extends Component {
 
       onILClick = (props) => {
         this.setState({displayMarkers: this.state.markers.filter(marker => marker.props.state_abbr === 'IL')});
-        console.log('displayMarkers: ', this.state.displayMarkers);
+        //console.log('displayMarkers: ', this.state.displayMarkers);
       }
 
       onCookCountyClick = (props) => {
         this.setState({displayMarkers: this.state.markers.filter(marker => marker.props.county === 'COOK')});
-        console.log('displayMarkers: ', this.state.displayMarkers);
+        //console.log('displayMarkers: ', this.state.displayMarkers);
       }
 
       onLAClick = (props) => {
         this.setState({displayMarkers: this.state.markers.filter(marker => marker.props.city_name === 'LOS ANGELES')});
-        console.log('displayMarkers: ', this.state.displayMarkers);
+        //console.log('displayMarkers: ', this.state.displayMarkers);
       }
 
       onSFClick = (props) => {
         this.setState({displayMarkers: this.state.markers.filter(marker => marker.props.city_name === 'SAN FRANCISCO')});
-        console.log('displayMarkers: ', this.state.displayMarkers);
+        //console.log('displayMarkers: ', this.state.displayMarkers);
       }
 
       onAtlantaClick = (props) => {
         this.setState({displayMarkers: this.state.markers.filter(marker => marker.props.city_name === 'ATLANTA' && marker.props.state_abbr === 'GA')});
-        console.log('displayMarkers: ', this.state.displayMarkers);
+        //console.log('displayMarkers: ', this.state.displayMarkers);
       }
 
       onDetroitClick = (props) => {
         this.setState({displayMarkers: this.state.markers.filter(marker => marker.props.city_name === 'DETROIT' && marker.props.state_abbr === 'MI')});
-        console.log('displayMarkers: ', this.state.displayMarkers);
+        //console.log('displayMarkers: ', this.state.displayMarkers);
       }
 
       onSeattleClick = (props) => {
         this.setState({displayMarkers: this.state.markers.filter(marker => marker.props.city_name === 'SEATTLE' && marker.props.state_abbr === 'WA')});
-        console.log('displayMarkers: ', this.state.displayMarkers);
+        //console.log('displayMarkers: ', this.state.displayMarkers);
       }
 
       onNYCClick = (props) => {
         this.setState({displayMarkers: this.state.markers.filter(marker => marker.props.county === 'QUEENS' || marker.props.county === 'KINGS' || marker.props.county === 'NEW YORK' || marker.props.city_name === 'STATEN ISLAND' || marker.props.county === 'BRONX')});
-        console.log('displayMarkers: ', this.state.displayMarkers);
+        //console.log('displayMarkers: ', this.state.displayMarkers);
       }
 
       onUSAClick = (props) => {
         this.setState({displayMarkers: this.state.markers});
-        console.log('displayMarkers: ', this.state.displayMarkers);
+        //console.log('displayMarkers: ', this.state.displayMarkers);
       }
     
       onMapClicked = (props) => {
@@ -88,6 +88,12 @@ export class MapContainer extends Component {
       createComplianceURL = (props) => {
         return <a href={this.state.selectedPlace.echoURL} target="_blank"><i className="far fa-3x fa-folder-open"></i></a>;
       }
+      search = (zip) => {
+        console.log("search:", zip)
+        //set the state to the zip value
+
+      }
+      //create a function that filters by zip code -take the markers from the state object and filter them according to zip. 
 
       componentDidMount() {
         //locating the user and seeking the user's location to center the map.
@@ -98,7 +104,7 @@ export class MapContainer extends Component {
           let displayMarkers = USAData.map((tile) => {
            tile=tile.tri_facility;
            let zipCode= 60614;
-           console.log(tile.ZIP_CODE);
+           //console.log(tile.ZIP_CODE);
            if(zipCode==tile.ZIP_CODE){
 
            
@@ -462,12 +468,12 @@ export class MapContainer extends Component {
       //we create a const to store the user's location
       const whereYouAre= this.state.userLocation || {lat: 41.8781,lng: -87.6298};
       //const whereYouAre= {lat:41.918990799999996,lng:-87.6760527}
-      console.log("where are you", whereYouAre);
+      //console.log("where are you", whereYouAre);
 
 
         return (
         <div className="">
-          <UserSearch/>
+          <UserSearch zipCodeSearch={this.search}/>
           <button className="btn filter-btn m-1"
           onClick={this.onUSAClick}>
           USA
