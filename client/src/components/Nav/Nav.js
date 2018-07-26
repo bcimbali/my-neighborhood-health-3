@@ -68,7 +68,7 @@ class Nav extends Component {
                   window.location.pathname === "/authentication" ? "nav-link active" : "nav-link"
                 }
               >
-                Login/Register
+                Login/Register 
               </Link>
               </li>
               
