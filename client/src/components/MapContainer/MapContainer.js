@@ -17,6 +17,7 @@ export class MapContainer extends Component {
         selectedPlace: {},
         userLocation: null,
         displayMarkers: [],
+        zoomFactor: null
       }
       this.onMarkerClick = this.onMarkerClick.bind(this);
     }
@@ -68,6 +69,9 @@ export class MapContainer extends Component {
 
       onNYCClick = (props) => {
         this.setState({displayMarkers: this.state.markers.filter(marker => marker.props.county === 'QUEENS' || marker.props.county === 'KINGS' || marker.props.county === 'NEW YORK' || marker.props.city_name === 'STATEN ISLAND' || marker.props.county === 'BRONX')});
+        this.setState({userLocation: {lat: 40.7128,lng: -74.0060} });
+        this.setState({zoomFactor: 13});
+
         //console.log('displayMarkers: ', this.state.displayMarkers);
       }
 
@@ -467,6 +471,7 @@ export class MapContainer extends Component {
         //the purpose of this const is to create a data variable so that we can utilize the dummy data in our marker.
       //we create a const to store the user's location
       const whereYouAre= this.state.userLocation || {lat: 41.8781,lng: -87.6298};
+      const zoomLevel = this.state.zoomFactor || 5;
       //const whereYouAre= {lat:41.918990799999996,lng:-87.6760527}
       //console.log("where are you", whereYouAre);
 
@@ -512,16 +517,22 @@ export class MapContainer extends Component {
           onClick={this.onDetroitClick}>
           Detroit
           </button>
+
           <Map
           className='map-height'
           google={this.props.google}
           styles={styles}
           initialCenter={whereYouAre}
-          zoom={5}
+          center={whereYouAre}
+          ref='gmap'
+          zoom={zoomLevel}
           onClick={this.onMapClicked}
         >
+
+        {/* Magenta current Location cross Marker */}
         <Marker
             name={'Current location'}
+            position={whereYouAre}
             icon={magentaMarker} />
 
           {this.state.displayMarkers}
