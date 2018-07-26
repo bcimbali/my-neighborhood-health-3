@@ -113,6 +113,7 @@ export class MapContainer extends Component {
         //Update the userlocation state 
     
         this.setState({userLocation: {lat: zipCodeLocation.latitude,lng: zipCodeLocation.longitude} });
+        this.setState({zoomFactor: 10});
 
         
 
