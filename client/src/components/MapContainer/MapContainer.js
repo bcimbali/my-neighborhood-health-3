@@ -39,6 +39,8 @@ export class MapContainer extends Component {
 
       onCookCountyClick = (props) => {
         this.setState({displayMarkers: this.state.markers.filter(marker => marker.props.county === 'COOK')});
+        this.setState({userLocation: {lat: 41.8807,lng: -87.6742} });
+        this.setState({zoomFactor: 12});
         //console.log('displayMarkers: ', this.state.displayMarkers);
       }
 
@@ -64,19 +66,23 @@ export class MapContainer extends Component {
 
       onSeattleClick = (props) => {
         this.setState({displayMarkers: this.state.markers.filter(marker => marker.props.city_name === 'SEATTLE' && marker.props.state_abbr === 'WA')});
+        this.setState({userLocation: {lat: 47.6062,lng: -122.3321} });
+        this.setState({zoomFactor: 12});
         //console.log('displayMarkers: ', this.state.displayMarkers);
       }
 
       onNYCClick = (props) => {
         this.setState({displayMarkers: this.state.markers.filter(marker => marker.props.county === 'QUEENS' || marker.props.county === 'KINGS' || marker.props.county === 'NEW YORK' || marker.props.city_name === 'STATEN ISLAND' || marker.props.county === 'BRONX')});
         this.setState({userLocation: {lat: 40.7128,lng: -74.0060} });
-        this.setState({zoomFactor: 13});
+        this.setState({zoomFactor: 12});
 
         //console.log('displayMarkers: ', this.state.displayMarkers);
       }
 
       onUSAClick = (props) => {
         this.setState({displayMarkers: this.state.markers});
+        this.setState({userLocation: {lat: 39.8283,lng: -98.5795} });
+        this.setState({zoomFactor: 5});
         //console.log('displayMarkers: ', this.state.displayMarkers);
       }
     
