@@ -6,7 +6,7 @@ import magentaMarker from "./../../magenta_marker.ico"
 import USAData from "../../data/USA_TRI.json";
 import UserSearch from "../UserSearch/UserSearch.js";
 import zipcodes from "zipcodes";
-
+import "./MapContainer.css";
 
 export class MapContainer extends Component {
     constructor() {
@@ -499,6 +499,7 @@ export class MapContainer extends Component {
         <div className="">
           
           <UserSearch zipCodeSearch={this.search}/>
+          <div className="filterButtons">
 
           <button className="btn filter-btn m-1"
           onClick={this.onUSAClick}>
@@ -536,6 +537,7 @@ export class MapContainer extends Component {
           onClick={this.onDetroitClick}>
           Detroit
           </button>
+          </div>
 
           <Map
           className='map-height'

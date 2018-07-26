@@ -82,7 +82,8 @@ class Nav extends Component {
             
           
         </ul>
-        <h1 className="header-font text-center">My Neighborhood Health</h1>
+        <h5 className="header-font text-center">My Neighborhood Health</h5>
+        <p>MNH app assist users to visualize where toxic chemicals are stored. Each orange marker represents a company storing toxic chemicals.  Users can adjust the map with different kinds of searches. When users see an orange diamond, s/he can click on it and learn the company’s name, address, and compliance with EPA regulations.</p>
         </div>
       );
   }
