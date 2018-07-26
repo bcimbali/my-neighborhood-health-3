@@ -5,6 +5,7 @@ import orangeDiamond from "./../../orange-diamond.ico"
 import magentaMarker from "./../../magenta_marker.ico"
 import USAData from "../../data/USA_TRI.json";
 import UserSearch from "../UserSearch/UserSearch.js";
+import zipcodes from "zipcodes";
 
 
 export class MapContainer extends Component {
@@ -40,7 +41,7 @@ export class MapContainer extends Component {
       onCookCountyClick = (props) => {
         this.setState({displayMarkers: this.state.markers.filter(marker => marker.props.county === 'COOK')});
         this.setState({userLocation: {lat: 41.8807,lng: -87.6742} });
-        this.setState({zoomFactor: 12});
+        this.setState({zoomFactor: 10});
         //console.log('displayMarkers: ', this.state.displayMarkers);
       }
 
@@ -98,10 +99,22 @@ export class MapContainer extends Component {
       createComplianceURL = (props) => {
         return <a href={this.state.selectedPlace.echoURL} target="_blank"><i className="far fa-3x fa-folder-open"></i></a>;
       }
+      //set the state to the zip value
       search = (zip) => {
-        console.log("search:", zip);
+        //console.log("search:", zip);
         this.setState({displayMarkers: this.state.markers.filter(marker => marker.props.zip_code === zip)});
-        //set the state to the zip value
+        // re-center the map to a set of coordinates in the zip code
+        //When the user submits a zip, our app needs to convert it to a lat/lng variable that can be passed thru.
+        var zipCodeLocation = zipcodes.lookup(zip);
+        console.log("zipcodelocation", zipCodeLocation)
+
+        //take the json lat&lng by calling the key on theobject
+        //zipCodeLocation.latitude 
+        //Update the userlocation state 
+    
+        this.setState({userLocation: {lat: zipCodeLocation.latitude,lng: zipCodeLocation.longitude} });
+
+        
 
       }
       //create a function that filters by zip code -take the markers from the state object and filter them according to zip. 
