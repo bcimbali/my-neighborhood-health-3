@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
 // import {GoogleApiWrapper} from 'google-maps-react';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
-//import dummyData60611 from "../../data/converted.json";
 import orangeDiamond from "./../../orange-diamond.ico"
 import magentaMarker from "./../../magenta_marker.ico"
-//import ILData from "../../data/IL_TRI.json";
 import USAData from "../../data/USA_TRI.json";
+import UserSearch from "../UserSearch/UserSearch.js";
 
-
-// ...
 
 export class MapContainer extends Component {
     constructor() {
@@ -19,19 +16,74 @@ export class MapContainer extends Component {
         activeMarker: {},
         selectedPlace: {},
         userLocation: null,
-
+        displayMarkers: [],
+        zoomFactor: null
       }
       this.onMarkerClick = this.onMarkerClick.bind(this);
     }
 
 
       onMarkerClick = (props, marker, e) => {
-        console.log(props);
+        //console.log(props);
           this.setState({
           selectedPlace: props,
           activeMarker: marker,
-          showingInfoWindow: true
+          showingInfoWindow: true,
         });
+      }
+
+      onILClick = (props) => {
+        this.setState({displayMarkers: this.state.markers.filter(marker => marker.props.state_abbr === 'IL')});
+        //console.log('displayMarkers: ', this.state.displayMarkers);
+      }
+
+      onCookCountyClick = (props) => {
+        this.setState({displayMarkers: this.state.markers.filter(marker => marker.props.county === 'COOK')});
+        this.setState({userLocation: {lat: 41.8807,lng: -87.6742} });
+        this.setState({zoomFactor: 12});
+        //console.log('displayMarkers: ', this.state.displayMarkers);
+      }
+
+      onLAClick = (props) => {
+        this.setState({displayMarkers: this.state.markers.filter(marker => marker.props.city_name === 'LOS ANGELES')});
+        //console.log('displayMarkers: ', this.state.displayMarkers);
+      }
+
+      onSFClick = (props) => {
+        this.setState({displayMarkers: this.state.markers.filter(marker => marker.props.city_name === 'SAN FRANCISCO')});
+        //console.log('displayMarkers: ', this.state.displayMarkers);
+      }
+
+      onAtlantaClick = (props) => {
+        this.setState({displayMarkers: this.state.markers.filter(marker => marker.props.city_name === 'ATLANTA' && marker.props.state_abbr === 'GA')});
+        //console.log('displayMarkers: ', this.state.displayMarkers);
+      }
+
+      onDetroitClick = (props) => {
+        this.setState({displayMarkers: this.state.markers.filter(marker => marker.props.city_name === 'DETROIT' && marker.props.state_abbr === 'MI')});
+        //console.log('displayMarkers: ', this.state.displayMarkers);
+      }
+
+      onSeattleClick = (props) => {
+        this.setState({displayMarkers: this.state.markers.filter(marker => marker.props.city_name === 'SEATTLE' && marker.props.state_abbr === 'WA')});
+        this.setState({userLocation: {lat: 47.6062,lng: -122.3321} });
+        this.setState({zoomFactor: 12});
+        //console.log('displayMarkers: ', this.state.displayMarkers);
+      }
+
+      onNYCClick = (props) => {
+        this.setState({displayMarkers: this.state.markers.filter(marker => marker.props.county === 'QUEENS' || marker.props.county === 'KINGS' || marker.props.county === 'NEW YORK' || marker.props.city_name === 'STATEN ISLAND' || marker.props.county === 'BRONX')});
+        this.setState({userLocation: {lat: 40.7128,lng: -74.0060} });
+        this.setState({zoomFactor: 12});
+
+        //console.log('displayMarkers: ', this.state.displayMarkers);
+      }
+
+      onUSAClick = (props) => {
+        this.setState({displayMarkers: this.state.markers});
+        this.setState({userLocation: {lat: 39.8283,lng: -98.5795} });
+        this.setState({zoomFactor: 5});
+        //console.log('displayMarkers: ', this.state.displayMarkers);
       }
     
       onMapClicked = (props) => {
@@ -43,29 +95,47 @@ export class MapContainer extends Component {
         }
       };
 
+      createComplianceURL = (props) => {
+        return <a href={this.state.selectedPlace.echoURL} target="_blank"><i className="far fa-3x fa-folder-open"></i></a>;
+      }
+      search = (zip) => {
+        console.log("search:", zip);
+        this.setState({displayMarkers: this.state.markers.filter(marker => marker.props.zip_code === zip)});
+        //set the state to the zip value
+
+      }
+      //create a function that filters by zip code -take the markers from the state object and filter them according to zip. 
+
       componentDidMount() {
         //locating the user and seeking the user's location to center the map.
         navigator.geolocation.getCurrentPosition((position) =>{
           this.setState({userLocation: {lat: position.coords.latitude, lng: position.coords.longitude}});
           
         });
-          let markers = USAData.map((tile) => {
+          let displayMarkers = USAData.map((tile) => {
            tile=tile.tri_facility;
+           let zipCode= 60614;
+           //console.log(tile.ZIP_CODE);
+
+           
            //console.log(tile);
             return (<Marker
             key={tile.TRI_FACILITY_ID}
             title={tile.FACILITY_NAME}
             icon={{url: orangeDiamond}} 
             name={tile.FACILITY_NAME}
+            echoURL={'https://echo.epa.gov/detailed-facility-report?fid=' + tile.TRI_FACILITY_ID}
             onClick={this.onMarkerClick}
             street_address={tile.STREET_ADDRESS}
             state_abbr={tile.STATE_ABBR}
             city_name={tile.CITY_NAME}
             zip_code={tile.ZIP_CODE}
+            county={tile.COUNTY_NAME}
             position={{lat: tile.PREF_LATITUDE, lng: `-${tile.PREF_LONGITUDE}`}} />
               
-          )});
-          this.setState({markers: markers},()=> console.log('Whatever'));
+          );
+        });
+          this.setState({displayMarkers: displayMarkers, markers: displayMarkers});
           // console.log(this.state.markers)
       };
 
@@ -407,44 +477,86 @@ export class MapContainer extends Component {
         //the purpose of this const is to create a data variable so that we can utilize the dummy data in our marker.
       //we create a const to store the user's location
       const whereYouAre= this.state.userLocation || {lat: 41.8781,lng: -87.6298};
+      const zoomLevel = this.state.zoomFactor || 5;
       //const whereYouAre= {lat:41.918990799999996,lng:-87.6760527}
-      console.log("where are you", whereYouAre);
+      //console.log("where are you", whereYouAre);
 
 
         return (
-        
+        <div className="">
+          
+          <UserSearch zipCodeSearch={this.search}/>
 
-        <Map
-         google={this.props.google}
-         styles={styles}
-         initialCenter={whereYouAre}
-         zoom={14}
-         onClick={this.onMapClicked}
-       >
-       <Marker
-          name={'Current location'}
-          icon={magentaMarker} />
+          <button className="btn filter-btn m-1"
+          onClick={this.onUSAClick}>
+          USA
+          </button>
+          <button className="btn filter-btn m-1"
+          onClick={this.onILClick}>
+          IL
+          </button>
+          <button className="btn filter-btn m-1"
+          onClick={this.onCookCountyClick}>
+          Cook County
+          </button>
+          <button className="btn filter-btn m-1"
+          onClick={this.onLAClick}>
+          Los Angeles
+          </button>
+          <button className="btn filter-btn m-1"
+          onClick={this.onSFClick}>
+          SF
+          </button>
+          <button className="btn filter-btn m-1"
+          onClick={this.onNYCClick}>
+          NYC
+          </button>
+          <button className="btn filter-btn m-1"
+          onClick={this.onAtlantaClick}>
+          Atlanta
+          </button>
+          <button className="btn filter-btn m-1"
+          onClick={this.onSeattleClick}>
+          Seattle
+          </button>
+          <button className="btn filter-btn m-1"
+          onClick={this.onDetroitClick}>
+          Detroit
+          </button>
 
-        {this.state.markers}
-        <InfoWindow
-          marker = { this.state.activeMarker }
-          visible = { this.state.showingInfoWindow }
+          <Map
+          className='map-height'
+          google={this.props.google}
+          styles={styles}
+          initialCenter={whereYouAre}
+          center={whereYouAre}
+          ref='gmap'
+          zoom={zoomLevel}
+          onClick={this.onMapClicked}
         >
-          <div>
-            <h1>{this.state.selectedPlace.name}</h1>
-            <p>{this.state.selectedPlace.street_address}</p>
-            <p>{this.state.selectedPlace.city_name}, {this.state.selectedPlace.state_abbr} {this.state.selectedPlace.zip_code}</p>
-            <h4>Chemicals:</h4>
-            <p>Will be listed here...</p>
-            <h4>Any Chemicals Known Carcinogens?</h4>
-            <p>Yes or no listed here...</p>
-            <h4>Compliance History:</h4>
-            <p>Compliance icon</p>
-            <h4>Are you a concerned neighbor?</h4>
-            <button className="button"></button>
-          </div>
-        </InfoWindow>
-        </Map>
+
+        {/* Magenta current Location cross Marker */}
+        <Marker
+            name={'Current location'}
+            position={whereYouAre}
+            icon={magentaMarker} />
+
+          {this.state.displayMarkers}
+          <InfoWindow
+            marker = { this.state.activeMarker }
+            visible = { this.state.showingInfoWindow }
+          >
+            <div>
+              <h1>{this.state.selectedPlace.name}</h1>
+              <p>{this.state.selectedPlace.street_address}</p>
+              <p>{this.state.selectedPlace.city_name}, {this.state.selectedPlace.state_abbr} {this.state.selectedPlace.zip_code}</p>
+              <h4>Compliance History:</h4>
+              {this.createComplianceURL()}
+              <button className="button"></button>
+            </div>
+          </InfoWindow>
+          </Map>
+        </div>
       );
     }
   }

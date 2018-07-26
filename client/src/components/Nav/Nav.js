@@ -26,6 +26,7 @@ class Nav extends Component {
 
     render() {
       return (
+        <div>
         <ul className="nav nav-tabs">
           <li className="nav-item">
             <Link
@@ -81,6 +82,8 @@ class Nav extends Component {
             
           
         </ul>
+        <h1 className="header-font text-center">My Neighborhood Health</h1>
+        </div>
       );
   }
 }
