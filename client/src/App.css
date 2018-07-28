@@ -50,6 +50,8 @@
 .filter-btn {
   background-color: #293E68;
   color: orange;
+  padding: 3px 12px !important;
+  
 }
 
 .filter-btn:hover {
@@ -63,7 +65,15 @@
 .map-height {
   height: 50vh;
 }
-
+.zipinput {
+  border-radius: 6px;
+  outline: none;
+  background: #cfcfcf;
+  border: none;
+ 
+  padding: 3px 12px;
+  margin-right: 12px;
+}
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }

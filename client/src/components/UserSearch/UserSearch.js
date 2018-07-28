@@ -35,9 +35,9 @@ render() {
     // console.log(this.state.zipCode)
     //The consolelog above shows that we are properly setting the state and capturing the input. Below, we want an input field
     return(<form onSubmit={this.submitSearch}>
-                <span className="m-0 p-0">Search Zip Code: </span>
-                <input type="text" pattern="[0-9]{5}" name="zipCode" onChange= {this.handleInput} defaultValue={ this.state.zipCode }/>
-                <button className="btn filter-btn m-1">Zip</button>
+                
+                <input className= "zipinput" placeholder= "zip code" type="text" pattern="[0-9]{5}" name="zipCode" onChange= {this.handleInput} defaultValue={ this.state.zipCode }/>
+                <button className="btn filter-btn m-1">Go Go Go!</button>
            </form>)
 }
 
