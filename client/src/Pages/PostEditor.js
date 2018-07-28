@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 var axios = require('axios');
-// import Post from "./../components/Post"
 
 class PostEditor extends Component {
 
@@ -9,14 +8,12 @@ class PostEditor extends Component {
         username: '',
         email: '',
         posts: []
-
-
     };
+
     componentDidMount() {
         axios.get('/api/authentication/profile')
             .then(res => this.setState({ username: res.data.username, email: res.data.email }))
         this.getSavedPosts();
-
     }
 
     getSavedPosts = () => {
@@ -36,7 +33,6 @@ class PostEditor extends Component {
         })
     }
 
-
     addPost(newBodyPost) {
         console.log(this);
         console.log("in addPost");
@@ -49,25 +45,23 @@ class PostEditor extends Component {
 
         axios.post('/api/posts', postData)
             .then(function (response) {
-
             })
     }
-
 
     render() {
         return (
             <div>
                 <div className="card post-editor">
-                    Tell Us About Your Community's Environment
+                    <h4 className="card-title pt-2 pl-2 post-title"> Tell Us About Your Community's Environment </h4>
                     <div className="card-body">
                         <textarea className="form-control post-editor-input" value={this.state.newBodyPost} onChange={this.handleInput.bind(this)} />
-                        <button className="btn btn-success post-editor-btn" onClick={this.addPost.bind(this)}> Post </button>
+                        <button className="btn post-editor-btn" onClick={this.addPost.bind(this)}> Post </button>
                     </div>
                 </div>
 
                 <div className="card post-body">
-                    <div className="card-body">
-                        {this.state.posts.map(post => (
+                    <div className="card-body user-comment">
+                        {this.state.posts.slice(0,5).map(post => (
                             post.username + ": " +
                             post.post
                         ))}

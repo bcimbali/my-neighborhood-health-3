@@ -7,6 +7,15 @@
 .post-editor-btn {
     float:right;
     margin-top: 1em;
+    background-color: #293E68;
+    color: orange;
+}
+.post-title {
+    color: #293E68;
+    font-weight: bold;
+}
+.user-comment {
+    white-space: pre-line;
 }
 
 @media (max-width: 900px) {
