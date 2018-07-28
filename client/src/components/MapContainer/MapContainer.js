@@ -44,34 +44,14 @@ export class MapContainer extends Component {
         this.setState({zoomFactor: 10});
         //console.log('displayMarkers: ', this.state.displayMarkers);
       }
-
       onLAClick = (props) => {
         this.setState({displayMarkers: this.state.markers.filter(marker => marker.props.city_name === 'LOS ANGELES')});
         //console.log('displayMarkers: ', this.state.displayMarkers);
       }
-
       onSFClick = (props) => {
         this.setState({displayMarkers: this.state.markers.filter(marker => marker.props.city_name === 'SAN FRANCISCO')});
         //console.log('displayMarkers: ', this.state.displayMarkers);
       }
-
-      onAtlantaClick = (props) => {
-        this.setState({displayMarkers: this.state.markers.filter(marker => marker.props.city_name === 'ATLANTA' && marker.props.state_abbr === 'GA')});
-        //console.log('displayMarkers: ', this.state.displayMarkers);
-      }
-
-      onDetroitClick = (props) => {
-        this.setState({displayMarkers: this.state.markers.filter(marker => marker.props.city_name === 'DETROIT' && marker.props.state_abbr === 'MI')});
-        //console.log('displayMarkers: ', this.state.displayMarkers);
-      }
-
-      onSeattleClick = (props) => {
-        this.setState({displayMarkers: this.state.markers.filter(marker => marker.props.city_name === 'SEATTLE' && marker.props.state_abbr === 'WA')});
-        this.setState({userLocation: {lat: 47.6062,lng: -122.3321} });
-        this.setState({zoomFactor: 12});
-        //console.log('displayMarkers: ', this.state.displayMarkers);
-      }
-
       onNYCClick = (props) => {
         this.setState({displayMarkers: this.state.markers.filter(marker => marker.props.county === 'QUEENS' || marker.props.county === 'KINGS' || marker.props.county === 'NEW YORK' || marker.props.city_name === 'STATEN ISLAND' || marker.props.county === 'BRONX')});
         this.setState({userLocation: {lat: 40.7128,lng: -74.0060} });
@@ -79,7 +59,6 @@ export class MapContainer extends Component {
 
         //console.log('displayMarkers: ', this.state.displayMarkers);
       }
-
       onUSAClick = (props) => {
         this.setState({displayMarkers: this.state.markers});
         this.setState({userLocation: {lat: 39.8283,lng: -98.5795} });
@@ -497,47 +476,46 @@ export class MapContainer extends Component {
 
 
         return (
-        <div className="">
-          
+        <div className="mapcontainer">
+          <div className="searchBar">
           <UserSearch zipCodeSearch={this.search}/>
-          <div className="filterButtons">
+        
 
-          <button className="btn filter-btn m-1"
+          <div className="nav nav-pills">
+          <div className= "nav-item dropdown">
+
+          <a className="nav-link dropdown-toggle filter-drop" data-toggle="dropdown" href="#!" role="button" aria-haspopup="true" aria-expanded="false">Locations</a>
+
+          <div className="dropdown-menu drop">
+
+          <button className="dropdown-item"
           onClick={this.onUSAClick}>
           USA
           </button>
-          <button className="btn filter-btn m-1"
+          <button className=" dropdown-item"
           onClick={this.onILClick}>
           IL
           </button>
-          <button className="btn filter-btn m-1"
+          <button className=" dropdown-item"
           onClick={this.onCookCountyClick}>
-          Cook County
+          Cook C.
           </button>
-          <button className="btn filter-btn m-1"
+          <button className=" dropdown-item"
           onClick={this.onLAClick}>
-          Los Angeles
+          LA
           </button>
-          <button className="btn filter-btn m-1"
+          <button className=" dropdown-item"
           onClick={this.onSFClick}>
           SF
           </button>
-          <button className="btn filter-btn m-1"
+          <button className=" dropdown-item"
           onClick={this.onNYCClick}>
           NYC
           </button>
-          <button className="btn filter-btn m-1"
-          onClick={this.onAtlantaClick}>
-          Atlanta
-          </button>
-          <button className="btn filter-btn m-1"
-          onClick={this.onSeattleClick}>
-          Seattle
-          </button>
-          <button className="btn filter-btn m-1"
-          onClick={this.onDetroitClick}>
-          Detroit
-          </button>
+          </div>
+          </div>
+          </div >
+          <h5 className="header-font text-center">My Neighborhood Health</h5>
           </div>
 
           <Map
