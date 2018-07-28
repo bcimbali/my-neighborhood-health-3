@@ -50,10 +50,12 @@ class Login extends Component {
 		if(userData.username.length > 0 && userData.password.length > 0) {
 				disabledBtn = false;
 		}
-		let button = <button disabled={disabledBtn}>Submit</button>
+		let button = <button className="btn btn-info" disabled={disabledBtn}>Submit</button>
 	    return (
-			<div className="card">
-			<div className="card-header">  Login to our site  </div>
+			<div className="row align-items-center d-flex">
+			<div className="col">
+			<div className="card h-75">
+			<div className="card-header font-weight-bold text-center login-header">Login</div>
 			<div className="card-body">
 			<form className= "form" onSubmit = {this.handleSubmit}>
 				<div className="field">
@@ -73,6 +75,8 @@ class Login extends Component {
 				{button}
 				
 			</form>
+			</div>
+			</div>
 			</div>
 			</div>
 	  	);

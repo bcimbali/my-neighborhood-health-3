@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import Modal from 'react-bootstrap4-modal';
 
 class Register extends Component {
 	
@@ -7,10 +8,16 @@ class Register extends Component {
         username: '',
         email: '',
         password: '',
-        passwordConf: '',
+		passwordConf: '',
+		details: false,
 		terms: false,
 	}
 	
+	
+	toggle(){
+		const currentState = this.state.details;
+		this.setState({ details: !currentState }); 
+	  }
 	  
 	handleChange = (event) => {
 		if (event.target.name === "terms") {
@@ -61,11 +68,13 @@ class Register extends Component {
 		if(this.state.password.length === this.state.passwordConf.length && this.state.terms === true) {
 			disabledBtn = false;
 		}
-		let button = <button disabled={disabledBtn}>Submit</button>
+		let button = <button className="btn btn-info" disabled={disabledBtn}>Submit</button>
 		  
 	  return (
+		<div className="row">
+		<div className="col d-flex align-items-center justify-content-start">
 		<div className="card">
-		<div className="card-header">  Register for our site  </div>
+		<div className="card-header font-weight-bold text-center login-header">Register</div>
 		<div className="card-body">
 		<form onSubmit = {this.handleSubmit}>
             <div className="field">
@@ -101,13 +110,45 @@ class Register extends Component {
 							checked={this.state.terms}
 							onChange={this.handleChange}
 						/>
-						I agree to the <a href="https://google.com">terms and conditions</a>
+						<em>I agree to the</em> <button  className="btn filter-btn" onClick={this.toggle.bind(this)}>Terms and Conditions</button>
 					</label>
 				</div>
 			</div>
 			{/* <button className="mt-2" disabled = {this.state.terms ? false : true}> Submit </button> */}
 			{button}
 		</form>
+
+		<Modal visible={this.state.details} onClickBackdrop={()=> this.toggle()}>
+            <div className="modal-header mx-auto">
+              <h4 className="font-weight-bold modal-title">Terms and Conditions</h4>
+            </div>
+            <div className="modal-body">
+              <p>
+			   My Neighborhood Health does not share your email, username, or password with anyone else.
+			  </p>
+			  <p>
+			  Our Service may contain links to third-party web sites or services that are not owned or controlled by My Neighborhood Health.
+			  </p>
+			  <p>
+			  My Neighborhood Health has no control over, and assumes no responsibility for, the content, privacy policies, or practices of any third party web sites or services. You further acknowledge and agree that My Neighborhood Health shall not be responsible or liable, directly or indirectly, for any damage or loss caused or alleged to be caused by or in connection with use of or reliance on any such content, goods or services available on or through any such web sites or services.
+			  </p>
+			  <p>
+			  We reserve the right, at our sole discretion, to modify or replace these Terms at any time. If a revision is material we will try to provide at least 30 (change this) days' notice prior to any new terms taking effect. What constitutes a material change will be determined at our sole discretion.
+			  </p>
+			  <p>
+			  If you have any questions about these Terms, please contact us.
+			  </p>
+              
+            </div>
+            <div className="modal-footer">
+              <button type="button" className="btn btn-primary filter-btn" onClick={()=> this.toggle()}>
+                Close
+              </button>
+            </div>
+      	</Modal>
+
+		</div>
+		</div>
 		</div>
 		</div>
 	
