@@ -6,6 +6,7 @@ import Communities from './Pages/Communities';
 import News from './Pages/News';
 import GoogleApiWrapper from './components/MapContainer';
 import Authentication from './Pages/Authentication';
+import Header from './components/Header';
 
 
 class App extends Component {
@@ -14,6 +15,7 @@ class App extends Component {
 
       <Router>
         <div className="main-page">
+          <Header />
           <Nav />
           <Route exact path="/communities" component={Communities} />
           <Route exact path="/news" component={News} />
