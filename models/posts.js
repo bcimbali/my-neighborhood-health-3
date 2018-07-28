@@ -10,7 +10,6 @@ var PostSchema = new mongoose.Schema({
   email: {
     type: String,
     unique: false,
-    
     trim: true
   },
  post: {
