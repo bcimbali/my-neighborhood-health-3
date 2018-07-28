@@ -71,8 +71,10 @@ class Register extends Component {
 		let button = <button className="btn btn-info" disabled={disabledBtn}>Submit</button>
 		  
 	  return (
+		<div className="row">
+		<div className="col d-flex align-items-center justify-content-start">
 		<div className="card">
-		<div className="card-header">  Register for our site  </div>
+		<div className="card-header font-weight-bold text-center login-header">Register</div>
 		<div className="card-body">
 		<form onSubmit = {this.handleSubmit}>
             <div className="field">
@@ -108,7 +110,7 @@ class Register extends Component {
 							checked={this.state.terms}
 							onChange={this.handleChange}
 						/>
-						I agree to the <button  className="btn filter-btn" onClick={this.toggle.bind(this)}>Terms and Conditions</button>
+						<em>I agree to the</em> <button  className="btn filter-btn" onClick={this.toggle.bind(this)}>Terms and Conditions</button>
 					</label>
 				</div>
 			</div>
@@ -145,6 +147,8 @@ class Register extends Component {
             </div>
       	</Modal>
 
+		</div>
+		</div>
 		</div>
 		</div>
 	

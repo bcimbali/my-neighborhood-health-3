@@ -54,12 +54,23 @@
   
 }
 
+.login-header {
+  background-color: orange;
+  color: #073E57;
+}
+
 .filter-btn:hover {
   background-color: #2E6370;
 }
 
 .main-page {
   height: 100vh;
+}
+
+.gradient-bg {
+  background: #4da0b0; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #4da0b0, #d39d38); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #4da0b0, #d39d38); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .map-height {

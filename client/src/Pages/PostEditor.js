@@ -56,7 +56,7 @@ class PostEditor extends Component {
 
     render() {
         return (
-            <div>
+            <div className="gradient-bg h-100">
                 <div className="card post-editor">
                     Tell Us About Your Community's Environment
                     <div className="card-body">

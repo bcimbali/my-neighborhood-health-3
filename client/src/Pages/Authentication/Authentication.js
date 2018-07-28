@@ -9,7 +9,7 @@ import Register from './Register';
 const Authentication = (props) => {
        
                 return (
-                        <div className="d-flex justify-content-around m-5">
+                        <div className="container-fluid d-flex gradient-bg h-100 justify-content-around">
                                 <Login/>
                                 <Register/>
                                 

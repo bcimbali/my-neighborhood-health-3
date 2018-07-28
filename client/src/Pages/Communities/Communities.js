@@ -6,7 +6,7 @@ import PostEditor from "../PostEditor";
 class Communities extends Component {
     render() {
         return (
-            <PostEditor/>
+            <PostEditor />
         );
     }
 }
