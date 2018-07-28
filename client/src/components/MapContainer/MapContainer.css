@@ -1,4 +1,23 @@
-.filterButtons{
-    ;
-
+.searchBar {
+    display: flex;
+    align-items: center;
+    padding-left: 24px;
 }
+.filter-drop, .drop {
+    background-color: #293E68;
+    color: orange;
+    padding: 4px 12px !important;
+
+  }
+.filter-drop:hover 
+{
+    color:orange;
+    background-color: #2E6370;
+  }
+  .dropdown-item {
+      color:orange;
+  }
+  .mapcontainer {
+    background-color:#2E6370 !important;
+    height: 100vh;
+  }
