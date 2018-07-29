@@ -1,14 +1,15 @@
 .searchBar {
-    display: flex;
     align-items: center;
-    padding-left: 24px;
+    display: flex;
+    flex-wrap: wrap;
+    /* padding-left: 24px; */
 }
 .filter-drop, .drop {
     background-color: #293E68;
     color: orange;
-    padding: 4px 12px !important;
+    /* padding: 4px 12px !important; */
 
-  }
+}
 .filter-drop:hover 
 {
     color:orange;

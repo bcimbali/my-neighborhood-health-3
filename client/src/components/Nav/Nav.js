@@ -41,7 +41,7 @@ class Nav extends Component {
 
 
     return (
-      <div>
+      <div className="w-100">
         <ul className="nav nav-tabs">
           <li className="nav-item">
             <Link

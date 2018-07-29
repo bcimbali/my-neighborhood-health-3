@@ -527,83 +527,85 @@ export class MapContainer extends Component {
 
 
         return (
-        <div className="mapcontainer">
-          <div className="searchBar">
-          <UserSearch zipCodeSearch={this.search}/>
+        <div className="mapcontainer w-100">
+          <div className="searchBar w-100">
+            <UserSearch zipCodeSearch={this.search}/>
         
 
-          <div className="nav nav-pills">
-          <div className= "nav-item dropdown">
+            <div className="nav nav-pills">
+              <div className="nav-item dropdown">
 
-          <a className="nav-link dropdown-toggle filter-drop" data-toggle="dropdown" href="#!" role="button" aria-haspopup="true" aria-expanded="false">Locations</a>
+                <a className="nav-link dropdown-toggle filter-drop" data-toggle="dropdown" href="#!" role="button" aria-haspopup="true" aria-expanded="false">Locations</a>
 
-          <div className="dropdown-menu drop">
+                <div className="dropdown-menu drop">
 
-          <button className="dropdown-item"
-          onClick={this.onUSAClick}>
-          USA
-          </button>
-          <button className=" dropdown-item"
-          onClick={this.onILClick}>
-          IL
-          </button>
-          <button className=" dropdown-item"
-          onClick={this.onCookCountyClick}>
-          Cook County
-          </button>
-          <button className=" dropdown-item"
-          onClick={this.onPuertoRicoClick}>
-          Puerto Rico
-          </button>
-          <button className=" dropdown-item"
-          onClick={this.onLAClick}>
-          LA
-          </button>
-          <button className=" dropdown-item"
-          onClick={this.onAtlantaClick}>
-          ATL
-          </button>
-          <button className=" dropdown-item"
-          onClick={this.onSFClick}>
-          SF
-          </button>
-          <button className=" dropdown-item"
-          onClick={this.onNYCClick}>
-          NYC
-          </button>
-          <button className=" dropdown-item"
-          onClick={this.onMiamiClick}>
-          Miami
-          </button>
-          <button className=" dropdown-item"
-          onClick={this.onHoustonClick}>
-          Houston
-          </button>
-          <button className=" dropdown-item"
-          onClick={this.onHawaiiClick}>
-          Hawaii
-          </button>
-          <button className=" dropdown-item"
-          onClick={this.onNewJerseyClick}>
-          NJ
-          </button>
-          <button className=" dropdown-item"
-          onClick={this.onIndianaClick}>
-          Indiana
-          </button>
-          <button className=" dropdown-item"
-          onClick={this.onMichiganClick}>
-          Michigan
-          </button>
-          <button className=" dropdown-item"
-          onClick={this.onCaliforniaClick}>
-          California
-          </button>
+                  <button className="dropdown-item"
+                  onClick={this.onUSAClick}>
+                  USA
+                  </button>
+                  <button className=" dropdown-item"
+                  onClick={this.onILClick}>
+                  IL
+                  </button>
+                  <button className=" dropdown-item"
+                  onClick={this.onCookCountyClick}>
+                  Cook County
+                  </button>
+                  <button className=" dropdown-item"
+                  onClick={this.onPuertoRicoClick}>
+                  Puerto Rico
+                  </button>
+                  <button className=" dropdown-item"
+                  onClick={this.onLAClick}>
+                  LA
+                  </button>
+                  <button className=" dropdown-item"
+                  onClick={this.onAtlantaClick}>
+                  ATL
+                  </button>
+                  <button className=" dropdown-item"
+                  onClick={this.onSFClick}>
+                  SF
+                  </button>
+                  <button className=" dropdown-item"
+                  onClick={this.onNYCClick}>
+                  NYC
+                  </button>
+                  <button className=" dropdown-item"
+                  onClick={this.onMiamiClick}>
+                  Miami
+                  </button>
+                  <button className=" dropdown-item"
+                  onClick={this.onHoustonClick}>
+                  Houston
+                  </button>
+                  <button className=" dropdown-item"
+                  onClick={this.onHawaiiClick}>
+                  Hawaii
+                  </button>
+                  <button className=" dropdown-item"
+                  onClick={this.onNewJerseyClick}>
+                  NJ
+                  </button>
+                  <button className=" dropdown-item"
+                  onClick={this.onIndianaClick}>
+                  Indiana
+                  </button>
+                  <button className=" dropdown-item"
+                  onClick={this.onMichiganClick}>
+                  Michigan
+                  </button>
+                  <button className=" dropdown-item"
+                  onClick={this.onCaliforniaClick}>
+                  California
+                  </button>
           
-          </div>
-          </div>
-          </div >
-          <h5 className="header-font text-center">My Neighborhood Health</h5>
+                </div>
+              </div>
+            </div >
+            <h5 className="header-font text-center">
+              My Neighborhood Health
+            </h5>
           </div>
 
           <Map
