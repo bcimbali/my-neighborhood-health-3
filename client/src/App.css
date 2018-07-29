@@ -1,3 +1,12 @@
+.about-btn {
+  background: transparent;
+}
+
+.about-btn:hover {
+  text-decoration: underline;
+}
+
+
 .App {
   text-align: center;
 }
@@ -30,6 +39,10 @@
   max-height: 82vh;
 }
 
+.transparent-bg {
+  background: transparent;
+}
+
 .button {
   padding: 6px 24px;
   color: white;
@@ -47,6 +60,10 @@
   cursor: pointer;
 }
 
+.card-width {
+  width: 50vw;
+}
+
 .filter-btn {
   background-color: #293E68;
   color: orange;
@@ -55,8 +72,8 @@
 }
 
 .login-header {
-  background-color: orange;
-  color: #073E57;
+  background-color: rgba(255, 165, 0, 0.5);
+  color: white;
 }
 
 .filter-btn:hover {
@@ -86,7 +103,35 @@
   margin-right: 12px;
 }
 
+.form-control:focus{border-color: white;  box-shadow: none; -webkit-box-shadow: none;} 
+.has-error .form-control:focus{box-shadow: none; -webkit-box-shadow: none;}
+
+input[type=text]:focus {
+  background: transparent;
+  color: white;
+}
+
+input[type=text]::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: white;
+  opacity: 0.3;
+}
+input[type=text]::-moz-placeholder { /* Firefox 19+ */
+  color: pink;
+}
+input[type=text]:-ms-input-placeholder { /* IE 10+ */
+  color: pink;
+}
+input[type=text]:-moz-placeholder { /* Firefox 18- */
+  color: pink;
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+@media screen and (max-width: 768px) {
+  .card-width {
+    width: 100vw;
+  }
 }

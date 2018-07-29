@@ -50,34 +50,35 @@ class Login extends Component {
 		if(userData.username.length > 0 && userData.password.length > 0) {
 				disabledBtn = false;
 		}
-		let button = <button className="btn btn-info" disabled={disabledBtn}>Submit</button>
+		let button = <button className="border border-white btn mt-2 text-white transparent-bg" disabled={disabledBtn}>Submit</button>
 	    return (
-			<div className="row align-items-center d-flex">
-			<div className="col">
-			<div className="card h-75">
-			<div className="card-header font-weight-bold text-center login-header">Login</div>
-			<div className="card-body">
-			<form className= "form" onSubmit = {this.handleSubmit}>
-				<div className="field">
-					<label className="label">User Name</label>
-						<div className="control">
-							<input className="input form-control" type="text" name="username" placeholder="Enter username" value={this.state.username} onChange={this.handleChange}/>
-						</div>
-				</div>
-				<div className="field mt-2">
-				<label className="label">Password</label>
-					<div className="control">
-						<input className="input form-control" type="text" name="password" placeholder="Enter password" value={this.state.password} onChange={this.handleChange}/>
+			<div className="align-items-center col-12 d-flex justify-content-center">
+
+				<div className="border border-white card m-2 card-width text-white transparent-bg">
+					<div className="border border-white card-header font-weight-bold text-center login-header">
+						Login
+					</div>
+				<div className="card-body">
+						<form className= "form" onSubmit = {this.handleSubmit}>
+							<div className="field">
+								<label className="label">User Name</label>
+									<div className="control">
+										<input className="input form-control text-white transparent-bg" type="text" name="username" placeholder="Enter username" value={this.state.username} onChange={this.handleChange}/>
+									</div>
+							</div>
+							<div className="field mt-2">
+							<label className="label">Password</label>
+								<div className="control">
+									<input className="input form-control text-white transparent-bg" type="text" name="password" placeholder="Enter password" value={this.state.password} onChange={this.handleChange}/>
+								</div>
+							</div>
+							{/* <button className="mt-2"> Submit </button> */}
+							{/* <button disabled = {this.state.terms ? false : true}> Submit </button> */}
+							{button}
+							
+						</form>
 					</div>
 				</div>
-				{/* <button className="mt-2"> Submit </button> */}
-				{/* <button disabled = {this.state.terms ? false : true}> Submit </button> */}
-				{button}
-				
-			</form>
-			</div>
-			</div>
-			</div>
 			</div>
 	  	);
 	}

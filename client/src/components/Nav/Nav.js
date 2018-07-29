@@ -47,7 +47,7 @@ class Nav extends Component {
             <Link
               to="/"
               className={
-                window.location.pathname === "/" ? "nav-link active" : "nav-link"
+                window.location.pathname === "/" ? "nav-link text-white transparent-bg" : "nav-link text-white transparent-bg"
               }
             >
               Home
@@ -58,7 +58,7 @@ class Nav extends Component {
             <Link
               to="/communities"
               className={
-                window.location.pathname === "/communities" ? "nav-link active" : "nav-link"
+                window.location.pathname === "/communities" ? "nav-link text-white transparent-bg" : "nav-link text-white transparent-bg"
               }
             >
               Communities
@@ -68,15 +68,37 @@ class Nav extends Component {
             <Link
               to="/news"
               className={
-                window.location.pathname === "/news" ? "nav-link active" : "nav-link"
+                window.location.pathname === "/news" ? "nav-link text-white transparent-bg" : "nav-link text-white transparent-bg"
               }
             >
               News
             </Link>
           </li>
 
+          
+
+          {this.state.isAuthenticated === false ? (
+            <li className="nav-item">
+
+              <Link
+                to="/authentication"
+                className={
+                  window.location.pathname === "/authentication" ? "nav-link text-white transparent-bg" : "nav-link text-white transparent-bg"
+                }
+              >
+                Login/Register
+              </Link>
+            </li>
+
+          ) : (
+              <li className="nav-item">
+                <button className="about-btn border border-white btn p-2 text-white" onClick={this.handleClick}> Logout </button>
+              </li>
+            )
+          }
+          
           <li className="nav-item">
-            <button className="btn filter-btn m-2"
+            <button className="about-btn border border-white btn text-white p-2"
               onClick={() => this.toggle()}>
               About
           </button>
@@ -96,27 +118,6 @@ class Nav extends Component {
               </div>
             </Modal>
           </li>
-
-          {this.state.isAuthenticated === false ? (
-            <li className="nav-item">
-
-              <Link
-                to="/authentication"
-                className={
-                  window.location.pathname === "/authentication" ? "nav-link active" : "nav-link"
-                }
-              >
-                Login/Register
-              </Link>
-            </li>
-
-          ) : (
-              <li className="nav-item">
-                <button className="btn nav-btn" onClick={this.handleClick}> Logout </button>
-              </li>
-            )
-          }
-
 
         </ul>
       </div>

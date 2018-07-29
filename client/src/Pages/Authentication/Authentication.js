@@ -10,9 +10,10 @@ const Authentication = (props) => {
        
                 return (
                         <div className="container-fluid d-flex gradient-bg h-100 justify-content-around">
-                                <Login/>
-                                <Register/>
-                                
+                                <div className="row align-items-center d-flex w-100">
+                                                <Login/>
+                                                <Register/>
+                                </div>
                         </div>
                 );
        
