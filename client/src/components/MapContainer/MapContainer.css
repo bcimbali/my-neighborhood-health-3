@@ -18,11 +18,14 @@
 }
 .filter-drop:hover 
 {
+    background: rgba(255, 255, 255, 0.3);
     /* color:orange;
     background-color: #2E6370; */
-  }
+}
+
   .dropdown-item {
       color:orange;
+      cursor: pointer;
   }
   .mapcontainer {
     /* background-color:#2E6370 !important; */

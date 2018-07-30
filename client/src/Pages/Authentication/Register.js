@@ -112,7 +112,7 @@ class Register extends Component {
 									checked={this.state.terms}
 									onChange={this.handleChange}
 								/>
-								<em>I agree to the</em> <button  className="border border-white btn text-white transparent-bg" onClick={this.toggle.bind(this)}>Terms and Conditions</button>
+								<em>   I agree to the</em> <button  className="border border-white btn text-white transparent-bg" onClick={this.toggle.bind(this)}>Terms and Conditions</button>
 							</label>
 						</div>
 					</div>
@@ -143,7 +143,7 @@ class Register extends Component {
 					
 					</div>
 					<div className="modal-footer">
-					<button type="button" className="border border-dark btn text-dark transparent-bg" onClick={()=> this.toggle()}>
+					<button type="button" className="filter-btn btn" onClick={()=> this.toggle()}>
 						Close
 					</button>
 					</div>
