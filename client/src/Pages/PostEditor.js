@@ -60,12 +60,10 @@ class PostEditor extends Component {
                 </div>
 
                 <div className="card post-body">
-                    <div className="card-body user-comment">
-                        {this.state.posts.slice(0,5).map(post => (
-                            post.username + ": " +
-                            post.post
-                        ))}
-                    </div>
+                        {this.state.posts.map((post, i) =>
+                            <div className="card-body user-comment" key={i}>{post.username + ": " +
+                                post.post}</div>
+                        )}
                 </div>
             </div>
         )
