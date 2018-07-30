@@ -50,6 +50,10 @@
   background: transparent;
 }
 
+li.nav-item:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
 button.transparent-bg:hover {
   background: rgba(255, 255, 255, 0.3);
 }
