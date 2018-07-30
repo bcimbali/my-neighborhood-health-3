@@ -97,8 +97,8 @@ class Nav extends Component {
             )
           }
           
-          <li className="nav-item">
-            <button className="about-btn border border-white btn text-white p-2"
+          <li className="">
+            <button className="about-btn text-white p-2"
               onClick={() => this.toggle()}>
               About
           </button>

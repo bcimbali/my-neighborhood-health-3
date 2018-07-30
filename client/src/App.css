@@ -1,9 +1,14 @@
 .about-btn {
   background: transparent;
+  border: none;
 }
 
 .about-btn:hover {
-  text-decoration: underline;
+  border-right: 1px solid white;
+  border-left: 1px solid white;
+  border-top: 1px solid white;
+  border-radius: 10%;
+  cursor: pointer;
 }
 
 
@@ -86,8 +91,8 @@
 
 .gradient-bg {
   background: #4da0b0; /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #4da0b0, #d39d38); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #4da0b0, #d39d38); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: -webkit-linear-gradient(to right, #1E2D4C, #073E57, #d39d38); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #1E2D4C, #073E57, #d39d38); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .map-height {
@@ -96,7 +101,7 @@
 .zipinput {
   border-radius: 6px;
   outline: none;
-  background: #cfcfcf;
+  /* background: #cfcfcf; */
   border: none;
  
   padding: 3px 12px;

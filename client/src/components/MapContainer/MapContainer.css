@@ -4,21 +4,27 @@
     flex-wrap: wrap;
     /* padding-left: 24px; */
 }
-.filter-drop, .drop {
-    background-color: #293E68;
-    color: orange;
+.filter-drop {
+    /* background-color: #293E68;
+    color: orange; */
+    background: transparent;
     /* padding: 4px 12px !important; */
 
 }
+
+.drop {
+    background-color: #293E68;
+    color: orange;
+}
 .filter-drop:hover 
 {
-    color:orange;
-    background-color: #2E6370;
+    /* color:orange;
+    background-color: #2E6370; */
   }
   .dropdown-item {
       color:orange;
   }
   .mapcontainer {
-    background-color:#2E6370 !important;
+    /* background-color:#2E6370 !important; */
     height: 100vh;
   }

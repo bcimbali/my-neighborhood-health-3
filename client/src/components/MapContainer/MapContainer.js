@@ -535,7 +535,9 @@ export class MapContainer extends Component {
             <div className="nav nav-pills">
               <div className="nav-item dropdown">
 
-                <a className="nav-link dropdown-toggle filter-drop" data-toggle="dropdown" href="#!" role="button" aria-haspopup="true" aria-expanded="false">Locations</a>
+                <a className="border border-white nav-link dropdown-toggle filter-drop text-white" data-toggle="dropdown" href="#!" role="button" aria-haspopup="true" aria-expanded="false">
+                  Locations
+                </a>
 
                 <div className="dropdown-menu drop">
 
@@ -603,7 +605,7 @@ export class MapContainer extends Component {
                 </div>
               </div>
             </div >
-            <h5 className="header-font text-center">
+            <h5 className="header-font text-center text-white">
               My Neighborhood Health
             </h5>
           </div>
