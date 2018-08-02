@@ -15,9 +15,6 @@ The My Neighborhood Health application was created to raise awareness of toxic c
 ## Application Development
 This application was built using the following NPM Packages: body-parser, express, bcrypt, cheerio, and mongoose. The frontend uses the Google Maps API and some bootstrap for styling. The user registration and communities database for this application was built in Mongo. The data for the app was taken from the TOXNET Web Service API.
 
-GitHub: https://github.com/NUcoding02Project3/my-neighborhood-health-3 
-Heroku: https://gentle-basin-21986.herokuapp.com/
-
 
 
 
