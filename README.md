@@ -1,7 +1,7 @@
 # My Neighborhood Health
 
 ## Overview
-The My Neighborhood Health application was created to raise awareness of toxic chemical facilities in the Illinois area. A user can peruse the Illinois map to identify toxic chemical facilities locations and can link out to learn more about each toxic chemical. The user can also join communities have conversations on environmental topics, or catch up on environmental news. 
+The My Neighborhood Health application was created to raise awareness of toxic chemical facilities in the United States. A user can peruse the Illinois map to identify toxic chemical facilities locations and can link out to learn more about each toxic chemical. The user can also join communities have conversations on environmental topics, or catch up on environmental news. 
 
 ## User Experience
 * User can register or log into the app.
