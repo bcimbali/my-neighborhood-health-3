@@ -51,17 +51,17 @@ class PostEditor extends Component {
     render() {
         return (
             <div className="gradient-bg h-100">
-                <div className="card post-editor">
-                    <h4 className="card-title pt-2 pl-2 post-title"> Tell Us About Your Community's Environment </h4>
+                <div className="border border-white card post-editor transparent-bg">
+                    <h4 className="card-title pt-2 pl-2 post-title text-white"> Tell Us About Your Community's Environment </h4>
                     <div className="card-body">
                         <textarea className="form-control post-editor-input" value={this.state.newBodyPost} onChange={this.handleInput.bind(this)} />
-                        <button className="btn post-editor-btn" onClick={this.addPost.bind(this)}> Post </button>
+                        <button className="border border-white btn text-white transparent-bg m-1" onClick={this.addPost.bind(this)}> Post </button>
                     </div>
                 </div>
 
-                <div className="card post-body">
+                <div className="border border-white card post-body text-white transparent-bg">
                         {this.state.posts.map((post, i) =>
-                            <div className="card-body user-comment" key={i}>{post.username + ": " +
+                            <div className="card-body user-comment text-white" key={i}>{post.username + ": " +
                                 post.post}</div>
                         )}
                 </div>
