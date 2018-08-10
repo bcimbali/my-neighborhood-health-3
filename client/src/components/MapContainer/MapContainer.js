@@ -32,6 +32,35 @@ export class MapContainer extends Component {
           showingInfoWindow: true,
         });
       }
+      /***
+        EC: Let's talk Tuesday about ways to modularize these locational onClick functions.
+        It looks like a lot of this data could be kept in a json file outside of
+        this component and passed to a single onCLick function as the argument.
+
+        The data would look something like:
+
+        const STATE_MARKER_DATA = {
+          'IL': {
+            abbr: 'IL',
+            userLocation: {
+              lat: 40.6331,
+              lng: -89.3985,
+            }
+            zoomFactor: 7
+          },
+          ...
+        }
+
+        Then for the onClick():
+
+        onAreaClick = (marker) => {
+          this.setState({
+            displayMarkers: [marker],
+            userLocation: marker.userLocation,
+            zoomFactor: marker.zoomFactor
+          })
+        }
+      ***/
 
       onILClick = (props) => {
         this.setState({displayMarkers: this.state.markers.filter(marker => marker.props.state_abbr === 'IL')});
@@ -176,15 +205,39 @@ export class MapContainer extends Component {
             zip_code={tile.ZIP_CODE}
             county={tile.COUNTY_NAME}
             position={{lat: tile.PREF_LATITUDE, lng: `-${tile.PREF_LONGITUDE}`}} />
-              
+
           );
         });
+        /***
+          EC: Avoid keeping React components in another component's state.
+          A React component essentially is a javascript object,
+          which holds data about its props and state.
+          So when components held in state update based on their own props or state,
+          it inadvertently updates this component's state
+          outside of the setState() lifecycle.
+
+          What can be done instead is to keep in state only the data used to create the Marker components,
+          then move USAData.map() into this component's render() to create the Marker components.
+
+          Happy to talk through this more!
+        ***/
           this.setState({displayMarkers: displayMarkers, markers: displayMarkers});
           // console.log(this.state.markers)
       };
 
     render() {
+        /***
+          EC: We typically keep style objects in another file
+          and import them into components as needed,
+          to keep our components more readable.
 
+          Keep in mind that variables declared in render() will be re-declared
+          on each re-render. So for something constant like styling,
+          a re-declaration here is unnecessary.
+
+          A good rule of thumb is to keep render() as small as possible,
+          then break out any constants or logic into their own functions or components.
+        ***/
         const styles = [
           {
             "elementType": "geometry",
@@ -540,7 +593,23 @@ export class MapContainer extends Component {
                 </a>
 
                 <div className="dropdown-menu drop">
+                  {/***
+                    EC: If the onClick functions above are refactored to become a single function,
+                    then these buttons could be rendered by a single function as well!
 
+                    Something like:
+
+                    STATE_MARKER_DATA.map((marker, i) => (
+                      <button
+                        key={i}
+                        className="dropdown-item"
+                        onClick={ ()=> this.onAreaClick(marker) }
+                      >
+                      { marker.abbr }
+                      </button>
+
+                    ))
+                  ***/}
                   <button className="dropdown-item"
                   onClick={this.onUSAClick}>
                   USA
