@@ -5,6 +5,8 @@ import orangeDiamond from "./../../orange-diamond.ico"
 import magentaMarker from "./../../magenta_marker.ico"
 import USAData from "../../data/USA_TRI.json";
 import UserSearch from "../UserSearch/UserSearch.js";
+import styles from "./MapStyles";
+import BUTTON_CLICK_DATA from "./areaClick";
 import zipcodes from "zipcodes";
 import "./MapContainer.css";
 
@@ -39,12 +41,36 @@ export class MapContainer extends Component {
         this.setState({zoomFactor: 7});
         //console.log('displayMarkers: ', this.state.displayMarkers);
       }
-      onCookCountyClick = (props) => {
-        this.setState({displayMarkers: this.state.markers.filter(marker => marker.props.county === 'COOK')});
+      onCookCountyClick = (abbr) => {
+        this.setState({displayMarkers: this.state.markers.filter(marker => marker.props.county === abbr)});
         this.setState({userLocation: {lat: 41.8807,lng: -87.6742} });
         this.setState({zoomFactor: 10});
         //console.log('displayMarkers: ', this.state.displayMarkers);
       }
+
+      // Function to search through our data json
+      filterByAbbr = (marker, abbr) => {
+        if (marker.props.county === abbr) {
+          return marker
+        } else if (marker.props.state_abbr === abbr) {
+          return marker
+        } else if (marker.props.city_name === abbr) {
+          return marker
+        }
+      }
+
+      // Reusable function to handle the area clicks for the dropdown
+      onAreaClick = (abbr) => {
+        const areaData = BUTTON_CLICK_DATA[abbr];
+        this.setState( (prevState, props) => {
+          return {
+            displayMarkers: prevState.markers.filter((marker) => this.filterByAbbr(marker, abbr)),
+            userLocation: areaData.userLocation,
+            zoomFactor: areaData.zoomFactor
+          }
+        });
+      }
+
       onPuertoRicoClick = (props) => {
         this.setState({displayMarkers: this.state.markers.filter(marker => marker.props.state_abbr === 'PR')});
         this.setState({userLocation: {lat: 18.2208,lng: -66.5901} });
@@ -163,6 +189,7 @@ export class MapContainer extends Component {
 
            
            //console.log(tile);
+            //  Move the marker creation down to the render. Only store the marker data in the state and not the component creation.
             return (<Marker
             key={tile.TRI_FACILITY_ID}
             title={tile.FACILITY_NAME}
@@ -179,343 +206,17 @@ export class MapContainer extends Component {
               
           );
         });
-          this.setState({displayMarkers: displayMarkers, markers: displayMarkers});
+          this.setState({
+            displayMarkers: displayMarkers, 
+            markers: displayMarkers
+            // displayMarkerData: USAData
+          });
           // console.log(this.state.markers)
       };
 
     render() {
 
-        const styles = [
-          {
-            "elementType": "geometry",
-            "stylers": [
-              {
-                "color": "#1d2c4d"
-              }
-            ]
-          },
-          {
-            "elementType": "labels.text.fill",
-            "stylers": [
-              {
-                "color": "#8ec3b9"
-              }
-            ]
-          },
-          {
-            "elementType": "labels.text.stroke",
-            "stylers": [
-              {
-                "color": "#1a3646"
-              }
-            ]
-          },
-          {
-            "featureType": "administrative.country",
-            "elementType": "geometry.stroke",
-            "stylers": [
-              {
-                "color": "#4b6878"
-              }
-            ]
-          },
-          {
-            "featureType": "administrative.land_parcel",
-            "elementType": "labels",
-            "stylers": [
-              {
-                "visibility": "off"
-              }
-            ]
-          },
-          {
-            "featureType": "administrative.land_parcel",
-            "elementType": "labels.text.fill",
-            "stylers": [
-              {
-                "color": "#64779e"
-              }
-            ]
-          },
-          {
-            "featureType": "administrative.province",
-            "elementType": "geometry.stroke",
-            "stylers": [
-              {
-                "color": "#4b6878"
-              }
-            ]
-          },
-          {
-            "featureType": "landscape.man_made",
-            "elementType": "geometry.stroke",
-            "stylers": [
-              {
-                "color": "#334e87"
-              }
-            ]
-          },
-          {
-            "featureType": "landscape.natural",
-            "elementType": "geometry",
-            "stylers": [
-              {
-                "color": "#023e58"
-              }
-            ]
-          },
-          {
-            "featureType": "poi",
-            "elementType": "geometry",
-            "stylers": [
-              {
-                "color": "#283d6a"
-              }
-            ]
-          },
-          {
-            "featureType": "poi",
-            "elementType": "labels.text",
-            "stylers": [
-              {
-                "visibility": "off"
-              }
-            ]
-          },
-          {
-            "featureType": "poi",
-            "elementType": "labels.text.fill",
-            "stylers": [
-              {
-                "color": "#6f9ba5"
-              }
-            ]
-          },
-          {
-            "featureType": "poi",
-            "elementType": "labels.text.stroke",
-            "stylers": [
-              {
-                "color": "#1d2c4d"
-              }
-            ]
-          },
-          {
-            "featureType": "poi.attraction",
-            "elementType": "labels.icon",
-            "stylers": [
-              {
-                "visibility": "off"
-              }
-            ]
-          },
-          {
-            "featureType": "poi.business",
-            "elementType": "labels",
-            "stylers": [
-              {
-                "visibility": "off"
-              }
-            ]
-          },
-          {
-            "featureType": "poi.business",
-            "elementType": "labels.icon",
-            "stylers": [
-              {
-                "visibility": "off"
-              }
-            ]
-          },
-          {
-            "featureType": "poi.park",
-            "stylers": [
-              {
-                "visibility": "off"
-              }
-            ]
-          },
-          {
-            "featureType": "poi.park",
-            "elementType": "geometry.fill",
-            "stylers": [
-              {
-                "color": "#023e58"
-              }
-            ]
-          },
-          {
-            "featureType": "poi.park",
-            "elementType": "labels.icon",
-            "stylers": [
-              {
-                "visibility": "simplified"
-              }
-            ]
-          },
-          {
-            "featureType": "poi.park",
-            "elementType": "labels.text.fill",
-            "stylers": [
-              {
-                "color": "#3C7680"
-              }
-            ]
-          },
-          {
-            "featureType": "poi.place_of_worship",
-            "elementType": "labels.icon",
-            "stylers": [
-              {
-                "visibility": "off"
-              }
-            ]
-          },
-          {
-            "featureType": "poi.school",
-            "elementType": "labels.icon",
-            "stylers": [
-              {
-                "visibility": "off"
-              }
-            ]
-          },
-          {
-            "featureType": "road",
-            "elementType": "geometry",
-            "stylers": [
-              {
-                "color": "#304a7d"
-              }
-            ]
-          },
-          {
-            "featureType": "road",
-            "elementType": "labels.text.fill",
-            "stylers": [
-              {
-                "color": "#98a5be"
-              }
-            ]
-          },
-          {
-            "featureType": "road",
-            "elementType": "labels.text.stroke",
-            "stylers": [
-              {
-                "color": "#1d2c4d"
-              }
-            ]
-          },
-          {
-            "featureType": "road.highway",
-            "elementType": "geometry",
-            "stylers": [
-              {
-                "color": "#2c6675"
-              }
-            ]
-          },
-          {
-            "featureType": "road.highway",
-            "elementType": "geometry.stroke",
-            "stylers": [
-              {
-                "color": "#255763"
-              }
-            ]
-          },
-          {
-            "featureType": "road.highway",
-            "elementType": "labels.text.fill",
-            "stylers": [
-              {
-                "color": "#b0d5ce"
-              }
-            ]
-          },
-          {
-            "featureType": "road.highway",
-            "elementType": "labels.text.stroke",
-            "stylers": [
-              {
-                "color": "#023e58"
-              }
-            ]
-          },
-          {
-            "featureType": "road.local",
-            "elementType": "labels",
-            "stylers": [
-              {
-                "visibility": "off"
-              }
-            ]
-          },
-          {
-            "featureType": "transit",
-            "elementType": "labels.text.fill",
-            "stylers": [
-              {
-                "color": "#98a5be"
-              }
-            ]
-          },
-          {
-            "featureType": "transit",
-            "elementType": "labels.text.stroke",
-            "stylers": [
-              {
-                "color": "#1d2c4d"
-              }
-            ]
-          },
-          {
-            "featureType": "transit.line",
-            "elementType": "geometry.fill",
-            "stylers": [
-              {
-                "color": "#283d6a"
-              }
-            ]
-          },
-          {
-            "featureType": "transit.station",
-            "elementType": "geometry",
-            "stylers": [
-              {
-                "color": "#3a4762"
-              }
-            ]
-          },
-          {
-            "featureType": "transit.station",
-            "elementType": "labels.icon",
-            "stylers": [
-              {
-                "visibility": "off"
-              }
-            ]
-          },
-          {
-            "featureType": "water",
-            "elementType": "geometry",
-            "stylers": [
-              {
-                "color": "#0e1626"
-              }
-            ]
-          },
-          {
-            "featureType": "water",
-            "elementType": "labels.text.fill",
-            "stylers": [
-              {
-                "color": "#4e6d70"
-              }
-            ]
-          }
-        ]
+        
         // const data= USAData;
         //console.log("mikesCleanDataTest", data);
         //the purpose of this const is to create a data variable so that we can utilize the dummy data in our marker.
@@ -541,6 +242,18 @@ export class MapContainer extends Component {
 
                 <div className="dropdown-menu drop">
 
+                  {
+                    Object.keys(BUTTON_CLICK_DATA).map((marker, i) => (
+                      <button
+                        key={i}
+                        className="dropdown-item"
+                        onClick={ () => this.onAreaClick(marker) }
+                      >
+                        { marker }
+                      </button>
+                    ))
+                  }
+
                   <button className="dropdown-item"
                   onClick={this.onUSAClick}>
                   USA
@@ -548,14 +261,6 @@ export class MapContainer extends Component {
                   <button className=" dropdown-item"
                   onClick={this.onILClick}>
                   IL
-                  </button>
-                  <button className=" dropdown-item"
-                  onClick={this.onCookCountyClick}>
-                  Cook County
-                  </button>
-                  <button className=" dropdown-item"
-                  onClick={this.onPuertoRicoClick}>
-                  Puerto Rico
                   </button>
                   <button className=" dropdown-item"
                   onClick={this.onLAClick}>
