@@ -35,27 +35,16 @@ export class MapContainer extends Component {
         });
       }
 
-      onILClick = (props) => {
-        this.setState({displayMarkers: this.state.markers.filter(marker => marker.props.state_abbr === 'IL')});
-        this.setState({userLocation: {lat: 40.6331,lng: -89.3985} });
-        this.setState({zoomFactor: 7});
-        //console.log('displayMarkers: ', this.state.displayMarkers);
-      }
-      onCookCountyClick = (abbr) => {
-        this.setState({displayMarkers: this.state.markers.filter(marker => marker.props.county === abbr)});
-        this.setState({userLocation: {lat: 41.8807,lng: -87.6742} });
-        this.setState({zoomFactor: 10});
-        //console.log('displayMarkers: ', this.state.displayMarkers);
-      }
-
       // Function to search through our data json
-      filterByAbbr = (marker, abbr) => {
-        if (marker.props.county === abbr) {
+      filterByAbbr = (marker, abbr, stAbbr) => {
+        if (marker.props.county === abbr && marker.props.state_abbr === stAbbr) {
           return marker
         } else if (marker.props.state_abbr === abbr) {
           return marker
-        } else if (marker.props.city_name === abbr) {
+        } else if (marker.props.city_name === abbr && marker.props.state_abbr === stAbbr) {
           return marker
+        } else if ('USA' === abbr){
+          return this.state.markers
         }
       }
 
@@ -64,83 +53,11 @@ export class MapContainer extends Component {
         const areaData = BUTTON_CLICK_DATA[abbr];
         this.setState( (prevState, props) => {
           return {
-            displayMarkers: prevState.markers.filter((marker) => this.filterByAbbr(marker, abbr)),
+            displayMarkers: prevState.markers.filter((marker) => this.filterByAbbr(marker, areaData.abbr, areaData.stateAbbr)),
             userLocation: areaData.userLocation,
             zoomFactor: areaData.zoomFactor
           }
         });
-      }
-
-      onPuertoRicoClick = (props) => {
-        this.setState({displayMarkers: this.state.markers.filter(marker => marker.props.state_abbr === 'PR')});
-        this.setState({userLocation: {lat: 18.2208,lng: -66.5901} });
-        this.setState({zoomFactor: 8});
-        //console.log('displayMarkers: ', this.state.displayMarkers);
-      }
-      onLAClick = (props) => {
-        this.setState({displayMarkers: this.state.markers.filter(marker => marker.props.city_name === 'LOS ANGELES')});
-        this.setState({userLocation: {lat: 34.0522,lng: -118.2437} });
-        this.setState({zoomFactor: 11});
-        //console.log('displayMarkers: ', this.state.displayMarkers);
-      }
-      onSFClick = (props) => {
-        this.setState({displayMarkers: this.state.markers.filter(marker => marker.props.city_name === 'SAN FRANCISCO')});
-        this.setState({userLocation: {lat: 37.7749,lng: -122.4194} });
-        this.setState({zoomFactor: 12});
-        //console.log('displayMarkers: ', this.state.displayMarkers);
-      }
-        onAtlantaClick = (props) => {
-          this.setState({displayMarkers: this.state.markers.filter(marker => marker.props.city_name === 'ATLANTA' && marker.props.state_abbr === 'GA' )});
-          this.setState({userLocation: {lat: 33.7490,lng: -84.3880} });
-          this.setState({zoomFactor: 12});
-      }
-      onNYCClick = (props) => {
-        this.setState({displayMarkers: this.state.markers.filter(marker => marker.props.county === 'QUEENS' || marker.props.county === 'KINGS' || marker.props.county === 'NEW YORK' || marker.props.city_name === 'STATEN ISLAND' || marker.props.county === 'BRONX')});
-        this.setState({userLocation: {lat: 40.7128,lng: -74.0060} });
-        this.setState({zoomFactor: 12});
-        //console.log('displayMarkers: ', this.state.displayMarkers);
-      }
-      onUSAClick = (props) => {
-        this.setState({displayMarkers: this.state.markers});
-        this.setState({userLocation: {lat: 39.8283,lng: -98.5795} });
-        this.setState({zoomFactor: 5});
-        //console.log('displayMarkers: ', this.state.displayMarkers);
-      }
-      onMiamiClick = (props) => {
-        this.setState({displayMarkers: this.state.markers.filter(marker => marker.props.city_name === 'MIAMI'  && marker.props.state_abbr === 'FL')});
-        this.setState({userLocation: {lat: 25.7617,lng: -80.1918} });
-        this.setState({zoomFactor: 11});
-        //console.log('displayMarkers: ', this.state.displayMarkers);
-      }
-      onHoustonClick = (props) => {
-        this.setState({displayMarkers: this.state.markers.filter(marker => marker.props.city_name === 'HOUSTON'  && marker.props.state_abbr === 'TX')});
-        this.setState({userLocation: {lat: 29.7604,lng: -95.3698} });
-        this.setState({zoomFactor: 11});
-      }
-      onHawaiiClick = (props) => {
-        this.setState({displayMarkers: this.state.markers.filter(marker => marker.props.state_abbr === 'HI')});
-        this.setState({userLocation: {lat: 19.8968,lng: -155.5828} });
-        this.setState({zoomFactor: 7});
-      }
-      onNewJerseyClick = (props) => {
-        this.setState({displayMarkers: this.state.markers.filter(marker => marker.props.state_abbr === 'NJ')});
-        this.setState({userLocation: {lat: 40.0583,lng: -74.4057} });
-        this.setState({zoomFactor: 7});
-      }
-      onIndianaClick = (props) => {
-        this.setState({displayMarkers: this.state.markers.filter(marker => marker.props.state_abbr === 'IN')});
-        this.setState({userLocation: {lat: 40.2672,lng: -86.1349} });
-        this.setState({zoomFactor: 7});
-      }
-      onMichiganClick = (props) => {
-        this.setState({displayMarkers: this.state.markers.filter(marker => marker.props.state_abbr === 'MI')});
-        this.setState({userLocation: {lat: 43.5978,lng: -84.7675} });
-        this.setState({zoomFactor: 7});
-      }
-      onCaliforniaClick = (props) => {
-        this.setState({displayMarkers: this.state.markers.filter(marker => marker.props.state_abbr === 'CA')});
-        this.setState({userLocation: {lat: 36.7783,lng: -119.4179} });
-        this.setState({zoomFactor: 6});
       }
     
       onMapClicked = (props) => {
@@ -216,15 +133,9 @@ export class MapContainer extends Component {
 
     render() {
 
-        
-        // const data= USAData;
-        //console.log("mikesCleanDataTest", data);
-        //the purpose of this const is to create a data variable so that we can utilize the dummy data in our marker.
       //we create a const to store the user's location
       const whereYouAre= this.state.userLocation || {lat: 39.8283,lng: -98.57955};
       const zoomLevel = this.state.zoomFactor || 5;
-      //const whereYouAre= {lat:41.918990799999996,lng:-87.6760527}
-      //console.log("where are you", whereYouAre);
 
 
         return (
@@ -242,6 +153,9 @@ export class MapContainer extends Component {
 
                 <div className="dropdown-menu drop">
 
+                  {/* Return an array of all the object keys from our areaClick.js, 
+                      dynamically create buttons with the index, and pass in the key to
+                      our onAreaClick function. */}
                   {
                     Object.keys(BUTTON_CLICK_DATA).map((marker, i) => (
                       <button
@@ -254,58 +168,11 @@ export class MapContainer extends Component {
                     ))
                   }
 
-                  <button className="dropdown-item"
+                  {/* <button className="dropdown-item"
                   onClick={this.onUSAClick}>
                   USA
                   </button>
-                  <button className=" dropdown-item"
-                  onClick={this.onILClick}>
-                  IL
-                  </button>
-                  <button className=" dropdown-item"
-                  onClick={this.onLAClick}>
-                  LA
-                  </button>
-                  <button className=" dropdown-item"
-                  onClick={this.onAtlantaClick}>
-                  ATL
-                  </button>
-                  <button className=" dropdown-item"
-                  onClick={this.onSFClick}>
-                  SF
-                  </button>
-                  <button className=" dropdown-item"
-                  onClick={this.onNYCClick}>
-                  NYC
-                  </button>
-                  <button className=" dropdown-item"
-                  onClick={this.onMiamiClick}>
-                  Miami
-                  </button>
-                  <button className=" dropdown-item"
-                  onClick={this.onHoustonClick}>
-                  Houston
-                  </button>
-                  <button className=" dropdown-item"
-                  onClick={this.onHawaiiClick}>
-                  Hawaii
-                  </button>
-                  <button className=" dropdown-item"
-                  onClick={this.onNewJerseyClick}>
-                  NJ
-                  </button>
-                  <button className=" dropdown-item"
-                  onClick={this.onIndianaClick}>
-                  Indiana
-                  </button>
-                  <button className=" dropdown-item"
-                  onClick={this.onMichiganClick}>
-                  Michigan
-                  </button>
-                  <button className=" dropdown-item"
-                  onClick={this.onCaliforniaClick}>
-                  California
-                  </button>
+                  */}
           
                 </div>
               </div>
