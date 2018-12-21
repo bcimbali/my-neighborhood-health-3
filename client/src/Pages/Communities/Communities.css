@@ -1,28 +1,32 @@
 .post-editor {
-    margin: 1em 20%;
+  margin: 1em 20%;
 }
+
 .post-body {
-    margin: 1em 20%;
+  margin: 1em 20%;
 }
+
 .post-editor-btn {
-    float:right;
-    margin-top: 1em;
-    background-color: #293E68;
-    color: orange;
+  float: right;
+  margin-top: 1em;
+  background-color: #293E68;
+  color: orange;
 }
+
 .post-title {
-    color: #293E68;
-    font-weight: bold;
+  color: #293E68;
+  font-weight: bold;
 }
+
 .user-comment {
-    border-bottom: 2px dotted white;
+  border-bottom: 2px dotted white;
 }
 
 @media (max-width: 900px) {
-    .post-editor {
-        margin: 1em;
-    }
-    .post-body {
-        margin: 1em;
-    }
+  .post-editor {
+    margin: 1em;
+  }
+  .post-body {
+    margin: 1em;
+  }
 }

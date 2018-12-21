@@ -12,7 +12,6 @@
   background: rgba(255, 255, 255, 0.3);
 }
 
-
 .App {
   text-align: center;
 }
@@ -71,7 +70,6 @@ body {
   text-align: center;
   border: none;
   display: block;
-  
 }
 
 .button:hover {
@@ -87,7 +85,6 @@ body {
   background-color: #293E68;
   color: orange;
   padding: 3px 12px !important;
-  
 }
 
 .login-header {
@@ -104,49 +101,71 @@ body {
 }
 
 .gradient-bg {
-  background: #4da0b0; /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #1E2D4C, #073E57, #d39d38); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #1E2D4C, #073E57, #d39d38); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: #4da0b0;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #1E2D4C, #073E57, #d39d38);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #1E2D4C, #073E57, #d39d38);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .map-height {
   height: 50vh;
 }
+
 .zipinput {
   border-radius: 6px;
   outline: none;
   /* background: #cfcfcf; */
   border: none;
- 
   padding: 3px 12px;
   margin-right: 12px;
 }
 
-.form-control:focus{border-color: white;  box-shadow: none; -webkit-box-shadow: none;} 
-.has-error .form-control:focus{box-shadow: none; -webkit-box-shadow: none;}
+.form-control:focus {
+  border-color: white;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+}
+
+.has-error .form-control:focus {
+  box-shadow: none;
+  -webkit-box-shadow: none;
+}
 
 input[type=text]:focus {
   background: transparent;
   color: white;
 }
 
-input[type=text]::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+input[type=text]::-webkit-input-placeholder {
+  /* Chrome/Opera/Safari */
   color: white;
   opacity: 0.3;
 }
-input[type=text]::-moz-placeholder { /* Firefox 19+ */
+
+input[type=text]::-moz-placeholder {
+  /* Firefox 19+ */
   color: pink;
 }
-input[type=text]:-ms-input-placeholder { /* IE 10+ */
+
+input[type=text]:-ms-input-placeholder {
+  /* IE 10+ */
   color: pink;
 }
-input[type=text]:-moz-placeholder { /* Firefox 18- */
+
+input[type=text]:-moz-placeholder {
+  /* Firefox 18- */
   color: pink;
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @media screen and (max-width: 768px) {

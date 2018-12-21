@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export default {
-    getArticles: function() {
-        return axios.get("/api/news")
-    }
+  getArticles: function() {
+    return axios.get("/api/news");
+  }
 };

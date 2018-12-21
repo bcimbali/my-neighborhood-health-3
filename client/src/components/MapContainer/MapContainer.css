@@ -1,33 +1,34 @@
 .searchBar {
-    align-items: center;
-    display: flex;
-    flex-wrap: wrap;
-    /* padding-left: 24px; */
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  /* padding-left: 24px; */
 }
-.filter-drop {
-    /* background-color: #293E68;
-    color: orange; */
-    background: transparent;
-    /* padding: 4px 12px !important; */
 
+.filter-drop {
+  /* background-color: #293E68;
+    color: orange; */
+  background: transparent;
+  /* padding: 4px 12px !important; */
 }
 
 .drop {
-    background-color: #293E68;
-    color: orange;
+  background-color: #293E68;
+  color: orange;
 }
-.filter-drop:hover 
-{
-    background: rgba(255, 255, 255, 0.3);
-    /* color:orange;
+
+.filter-drop:hover {
+  background: rgba(255, 255, 255, 0.3);
+  /* color:orange;
     background-color: #2E6370; */
 }
 
-  .dropdown-item {
-      color:orange;
-      cursor: pointer;
-  }
-  .mapcontainer {
-    /* background-color:#2E6370 !important; */
-    height: 100vh;
-  }
+.dropdown-item {
+  color: orange;
+  cursor: pointer;
+}
+
+.mapcontainer {
+  /* background-color:#2E6370 !important; */
+  height: 100vh;
+}
