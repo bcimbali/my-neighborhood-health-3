@@ -52,7 +52,7 @@ class PostEditor extends Component {
         <div className="border border-white card post-editor transparent-bg">
           <h4 className="card-title pt-2 pl-2 post-title text-white">
             {" "}
-            Tell Us About Your Community's Environment{" "}
+            Tell Us About the Environment in Your Community{" "}
           </h4>
           <div className="card-body">
             <textarea
