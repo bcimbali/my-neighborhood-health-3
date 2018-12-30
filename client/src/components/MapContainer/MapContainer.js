@@ -159,6 +159,7 @@ export class MapContainer extends Component {
       lng: -98.57955
     };
     const zoomLevel = this.state.zoomFactor || 5;
+    console.log("API KEY", process.env.REACT_APP_API_KEY);
 
     return (
       <div className="mapcontainer w-100">
@@ -247,5 +248,5 @@ export class MapContainer extends Component {
 }
 
 export default GoogleApiWrapper({
-  apiKey: "AIzaSyDbkAtce3FywDMsrsIBlY5IoBxfobNPqtw"
+  apiKey: `${process.env.REACT_APP_API_KEY}`
 })(MapContainer);
