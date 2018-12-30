@@ -9,6 +9,7 @@ import GoogleApiWrapper from "./components/MapContainer";
 import Nav from "./components/Nav";
 import News from "./Pages/News";
 
+// Require env variables for API Key
 require("dotenv").config();
 
 class App extends Component {
