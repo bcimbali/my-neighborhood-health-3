@@ -14,7 +14,6 @@ require("dotenv").config();
 
 class App extends Component {
   render() {
-    console.log("App.js API KEY: ", process.env);
     return (
       <Router>
         <div className="main-page">

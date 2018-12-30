@@ -76,7 +76,11 @@ export class MapContainer extends Component {
 
   createComplianceURL = props => {
     return (
-      <a href={this.state.selectedPlace.echoURL} target="_blank">
+      <a
+        href={this.state.selectedPlace.echoURL}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <i className="far fa-3x fa-folder-open" />
       </a>
     );
@@ -159,7 +163,6 @@ export class MapContainer extends Component {
       lng: -98.57955
     };
     const zoomLevel = this.state.zoomFactor || 5;
-    console.log("API KEY", process.env.REACT_APP_API_KEY);
 
     return (
       <div className="mapcontainer w-100">
