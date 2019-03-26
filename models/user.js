@@ -1,8 +1,8 @@
-var mongoose = require('mongoose');
-var bcrypt = require('bcrypt');
+var mongoose = require("mongoose");
+var bcrypt = require("bcrypt");
 
 var UserSchema = new mongoose.Schema({
-    username: {
+  username: {
     type: String,
     unique: true,
     required: true,
@@ -16,55 +16,52 @@ var UserSchema = new mongoose.Schema({
   },
   password: {
     type: String,
-    required: true,
+    required: true
   },
   passwordConf: {
     type: String,
-    required: false,
+    required: false
   },
   terms: {
     type: Boolean,
-    required: false,
+    required: false
   }
 });
 
 //authenticate input against database
-UserSchema.statics.authenticate = function (username, password, callback) {
+UserSchema.statics.authenticate = function(username, password, callback) {
   console.log("Inside UserSchema Authentication");
-  User.findOne({ username: username })
-    .exec(function (err, user) {
-      if (err) {
-        return callback(err)
-      } else if (!user) {
-        var err = new Error('User not found.');
-        err.status = 401;
-        console.log("User Not Found");
-        return callback(err);
+  User.findOne({ username: username }).exec(function(err, user) {
+    if (err) {
+      return callback(err);
+    } else if (!user) {
+      var err = new Error("User not found.");
+      err.status = 401;
+      console.log("User Not Found");
+      return callback(err);
+    }
+    bcrypt.compare(password, user.password, function(err, result) {
+      if (result === true) {
+        console.log("User was found");
+        return callback(null, user);
+      } else {
+        return callback();
       }
-      bcrypt.compare(password, user.password, function (err, result) {
-        if (result === true) {
-          console.log("User was found");
-          return callback(null, user);
-          
-        } else {
-          return callback();
-        }
-      })
     });
-}
+  });
+};
 
 //hashing a password before saving it to the database
-UserSchema.pre('save', function (next) {
+UserSchema.pre("save", function(next) {
   var user = this;
-  bcrypt.hash(user.password, 10, function (err, hash) {
+  bcrypt.hash(user.password, 10, function(err, hash) {
     if (err) {
       return next(err);
     }
     user.password = hash;
     next();
-  })
+  });
 });
 
-
-var User = mongoose.model('User', UserSchema);
+var User = mongoose.model("User", UserSchema);
 module.exports = User;

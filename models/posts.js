@@ -1,7 +1,6 @@
-var mongoose = require('mongoose');
+var mongoose = require("mongoose");
 
 var PostSchema = new mongoose.Schema({
-  
   username: {
     type: String,
     unique: false,
@@ -12,16 +11,14 @@ var PostSchema = new mongoose.Schema({
     unique: false,
     trim: true
   },
- post: {
-    type: String,
-    
+  post: {
+    type: String
   },
-  date: { 
-      type: Date,   
-      default: Date.now 
+  date: {
+    type: Date,
+    default: Date.now
   }
-  
 });
 
-var Post = mongoose.model('Post', PostSchema);
+var Post = mongoose.model("Post", PostSchema);
 module.exports = Post;
