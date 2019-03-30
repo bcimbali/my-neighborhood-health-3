@@ -1,10 +1,10 @@
-import "./Nav.css";
+import './Nav.css';
 
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-import { Link } from "react-router-dom";
-import Modal from "react-bootstrap4-modal";
-import axios from "axios";
+import { Link } from 'react-router-dom';
+import Modal from 'react-bootstrap4-modal';
+import axios from 'axios';
 
 class Nav extends Component {
   constructor(props) {
@@ -23,14 +23,14 @@ class Nav extends Component {
 
   componentDidMount() {
     axios
-      .get("/api/authentication/profile")
+      .get('/api/authentication/profile')
       .then(res => this.setState({ isAuthenticated: res.data.authentication }));
   }
 
   handleClick = event => {
     console.log("I'm in the logout button");
     event.preventDefault();
-    axios.get("/api/authentication/logout").then(function(response) {
+    axios.get('/api/authentication/logout').then(function(response) {
       window.location = response.data.redirect;
     });
   };
@@ -43,9 +43,9 @@ class Nav extends Component {
             <Link
               to="/"
               className={
-                window.location.pathname === "/"
-                  ? "nav-link text-white transparent-bg"
-                  : "nav-link text-white transparent-bg"
+                window.location.pathname === '/'
+                  ? 'nav-link text-white transparent-bg'
+                  : 'nav-link text-white transparent-bg'
               }
             >
               Home
@@ -56,9 +56,9 @@ class Nav extends Component {
             <Link
               to="/communities"
               className={
-                window.location.pathname === "/communities"
-                  ? "nav-link text-white transparent-bg"
-                  : "nav-link text-white transparent-bg"
+                window.location.pathname === '/communities'
+                  ? 'nav-link text-white transparent-bg'
+                  : 'nav-link text-white transparent-bg'
               }
             >
               Communities
@@ -68,9 +68,9 @@ class Nav extends Component {
             <Link
               to="/news"
               className={
-                window.location.pathname === "/news"
-                  ? "nav-link text-white transparent-bg"
-                  : "nav-link text-white transparent-bg"
+                window.location.pathname === '/news'
+                  ? 'nav-link text-white transparent-bg'
+                  : 'nav-link text-white transparent-bg'
               }
             >
               News
@@ -82,9 +82,9 @@ class Nav extends Component {
               <Link
                 to="/authentication"
                 className={
-                  window.location.pathname === "/authentication"
-                    ? "nav-link text-white transparent-bg"
-                    : "nav-link text-white transparent-bg"
+                  window.location.pathname === '/authentication'
+                    ? 'nav-link text-white transparent-bg'
+                    : 'nav-link text-white transparent-bg'
                 }
               >
                 Login/Register
@@ -96,47 +96,37 @@ class Nav extends Component {
                 className="about-btn border border-white btn p-2 text-white"
                 onClick={this.handleClick}
               >
-                {" "}
-                Logout{" "}
+                {' '}
+                Logout{' '}
               </button>
             </li>
           )}
 
           <li className="">
-            <button
-              className="about-btn text-white p-2"
-              onClick={() => this.toggle()}
-            >
+            <button className="about-btn text-white p-2" onClick={() => this.toggle()}>
               About
             </button>
-            <Modal
-              visible={this.state.details}
-              onClickBackdrop={() => this.toggle()}
-            >
+            <Modal visible={this.state.details} onClickBackdrop={() => this.toggle()}>
               <div className="modal-header mx-auto">
-                <h4 className="font-weight-bold modal-title">
-                  What's this app?
-                </h4>
+                <h4 className="font-weight-bold modal-title">What's this app?</h4>
               </div>
               <div className="modal-body">
                 <p>
-                  Are there toxic chemicals stored near where you live or work?
-                  If there are, are those chemicals being released to the air or
-                  water nearby? Would you like to find out?
+                  Are there toxic chemicals stored near where you live or work? If there are, are
+                  those chemicals being released to the air or water nearby? Would you like to find
+                  out?
                 </p>
                 <p>
-                  We were curious (concerned). We understand, locating that
-                  information is very tricky.
+                  We were curious (concerned). We understand, locating that information is very
+                  tricky.
                 </p>
                 <p>
-                  This is an easy-to-use resource for people to search our map
-                  and find facilities working with toxic chemicals nearby their
-                  work or home. Once a facility is clicked, a pop-up window
-                  appears and gives a quick run-down of the facilities details.
-                  If the user wants to learn more about, say, particular
-                  chemicals or if the facility is in compliance with the EPA,
-                  they are linked directly to an EPA page for that particular
-                  resource.
+                  This is an easy-to-use resource for people to search our map and find facilities
+                  working with toxic chemicals nearby their work or home. Once a facility is
+                  clicked, a pop-up window appears and gives a quick run-down of the facilities
+                  details. If the user wants to learn more about, say, particular chemicals or if
+                  the facility is in compliance with the EPA, they are linked directly to an EPA
+                  page for that particular resource.
                 </p>
               </div>
               <div className="modal-footer">

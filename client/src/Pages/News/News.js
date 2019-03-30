@@ -1,9 +1,9 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-import API from "../../utils/API";
-import Article from "../../components/Article";
-import Card from "../../components/Card";
-import { List } from "../../components/List";
+import API from '../../utils/API';
+import Article from '../../components/Article';
+import Card from '../../components/Card';
+import { List } from '../../components/List';
 
 class News extends Component {
   state = {
@@ -27,8 +27,6 @@ class News extends Component {
 
   render() {
     return (
-      // <Row>
-      //     <Col size="md-12">
       <Card title="Environmental News">
         {this.state.articles.length ? (
           <List>
@@ -40,8 +38,6 @@ class News extends Component {
           <h2 className="text-center">No News</h2>
         )}
       </Card>
-      //     </Col>
-      // </Row>
     );
   }
 }

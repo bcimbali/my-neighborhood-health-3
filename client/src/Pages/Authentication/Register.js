@@ -1,14 +1,14 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-import Modal from "react-bootstrap4-modal";
-import axios from "axios";
+import Modal from 'react-bootstrap4-modal';
+import axios from 'axios';
 
 class Register extends Component {
   state = {
-    username: "",
-    email: "",
-    password: "",
-    passwordConf: "",
+    username: '',
+    email: '',
+    password: '',
+    passwordConf: '',
     details: false,
     terms: false
   };
@@ -19,7 +19,7 @@ class Register extends Component {
   }
 
   handleChange = event => {
-    if (event.target.name === "terms") {
+    if (event.target.name === 'terms') {
       this.setState({
         terms: event.target.checked
       });
@@ -33,7 +33,7 @@ class Register extends Component {
   };
 
   handleSubmit = event => {
-    console.log("Form value: ", this.state);
+    console.log('Form value: ', this.state);
     event.preventDefault();
     const userData = {
       username: this.state.username,
@@ -43,7 +43,7 @@ class Register extends Component {
     };
     console.log(userData);
     axios
-      .post("/api/authentication/register", userData)
+      .post('/api/authentication/register', userData)
       .then(function(response) {
         window.location = response.data.redirect;
       })
@@ -60,10 +60,7 @@ class Register extends Component {
       disabledBtn = false;
     }
     let button = (
-      <button
-        className="border border-white btn text-white transparent-bg"
-        disabled={disabledBtn}
-      >
+      <button className="border border-white btn text-white transparent-bg" disabled={disabledBtn}>
         Submit
       </button>
     );
@@ -139,7 +136,7 @@ class Register extends Component {
                       checked={this.state.terms}
                       onChange={this.handleChange}
                     />
-                    <em> I agree to the</em>{" "}
+                    <em> I agree to the</em>{' '}
                     <button
                       className="border border-white btn text-white transparent-bg"
                       onClick={this.toggle.bind(this)}
@@ -153,54 +150,37 @@ class Register extends Component {
               {button}
             </form>
 
-            <Modal
-              visible={this.state.details}
-              onClickBackdrop={() => this.toggle()}
-            >
+            <Modal visible={this.state.details} onClickBackdrop={() => this.toggle()}>
               <div className="modal-header mx-auto">
-                <h4 className="font-weight-bold modal-title text-dark">
-                  Terms and Conditions
-                </h4>
+                <h4 className="font-weight-bold modal-title text-dark">Terms and Conditions</h4>
               </div>
               <div className="modal-body text-dark">
                 <p>
-                  My Neighborhood Health does not share your email, username, or
-                  password with anyone else.
+                  My Neighborhood Health does not share your email, username, or password with
+                  anyone else.
                 </p>
                 <p>
-                  Our Service may contain links to third-party web sites or
-                  services that are not owned or controlled by My Neighborhood
-                  Health.
+                  Our Service may contain links to third-party web sites or services that are not
+                  owned or controlled by My Neighborhood Health.
                 </p>
                 <p>
-                  My Neighborhood Health has no control over, and assumes no
-                  responsibility for, the content, privacy policies, or
-                  practices of any third party web sites or services. You
-                  further acknowledge and agree that My Neighborhood Health
-                  shall not be responsible or liable, directly or indirectly,
-                  for any damage or loss caused or alleged to be caused by or in
-                  connection with use of or reliance on any such content, goods
-                  or services available on or through any such web sites or
-                  services.
+                  My Neighborhood Health has no control over, and assumes no responsibility for, the
+                  content, privacy policies, or practices of any third party web sites or services.
+                  You further acknowledge and agree that My Neighborhood Health shall not be
+                  responsible or liable, directly or indirectly, for any damage or loss caused or
+                  alleged to be caused by or in connection with use of or reliance on any such
+                  content, goods or services available on or through any such web sites or services.
                 </p>
                 <p>
-                  We reserve the right, at our sole discretion, to modify or
-                  replace these Terms at any time. If a revision is material we
-                  will try to provide at least 30 (change this) days' notice
-                  prior to any new terms taking effect. What constitutes a
+                  We reserve the right, at our sole discretion, to modify or replace these Terms at
+                  any time. If a revision is material we will try to provide at least 30 (change
+                  this) days' notice prior to any new terms taking effect. What constitutes a
                   material change will be determined at our sole discretion.
                 </p>
-                <p>
-                  If you have any questions about these Terms, please contact
-                  us.
-                </p>
+                <p>If you have any questions about these Terms, please contact us.</p>
               </div>
               <div className="modal-footer">
-                <button
-                  type="button"
-                  className="filter-btn btn"
-                  onClick={() => this.toggle()}
-                >
+                <button type="button" className="filter-btn btn" onClick={() => this.toggle()}>
                   Close
                 </button>
               </div>

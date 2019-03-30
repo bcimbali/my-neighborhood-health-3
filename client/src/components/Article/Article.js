@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
 const Article = ({ title, link }) => (
   <h3>
-    <em>{title}</em>{" "}
+    <em>{title}</em>{' '}
     <span className="btn-group pull-right">
       <a
         className="btn btn-light text-white transparent-bg"

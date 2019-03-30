@@ -1,15 +1,15 @@
-import "./MapContainer.css";
+import './MapContainer.css';
 
-import { GoogleApiWrapper, InfoWindow, Map, Marker } from "google-maps-react";
-import React, { Component } from "react";
+import { GoogleApiWrapper, InfoWindow, Map, Marker } from 'google-maps-react';
+import React, { Component } from 'react';
 
-import BUTTON_CLICK_DATA from "./areaClick";
-import USAData from "../../data/USA_TRI.json";
-import UserSearch from "../UserSearch/UserSearch.js";
-import magentaMarker from "./../../magenta_marker.ico";
-import orangeDiamond from "./../../orange-diamond.ico";
-import styles from "./MapStyles";
-import zipcodes from "zipcodes";
+import BUTTON_CLICK_DATA from './areaClick';
+import USAData from '../../data/USA_TRI.json';
+import UserSearch from '../UserSearch/UserSearch.js';
+import magentaMarker from './../../magenta_marker.ico';
+import orangeDiamond from './../../orange-diamond.ico';
+import styles from './MapStyles';
+import zipcodes from 'zipcodes';
 
 export class MapContainer extends Component {
   constructor() {
@@ -27,7 +27,6 @@ export class MapContainer extends Component {
   }
 
   onMarkerClick = (props, marker, e) => {
-    //console.log(props);
     this.setState({
       selectedPlace: props,
       activeMarker: marker,
@@ -41,12 +40,9 @@ export class MapContainer extends Component {
       return marker;
     } else if (marker.props.state_abbr === abbr) {
       return marker;
-    } else if (
-      marker.props.city_name === abbr &&
-      marker.props.state_abbr === stAbbr
-    ) {
+    } else if (marker.props.city_name === abbr && marker.props.state_abbr === stAbbr) {
       return marker;
-    } else if ("USA" === abbr) {
+    } else if ('USA' === abbr) {
       return this.state.markers;
     }
   };
@@ -76,27 +72,20 @@ export class MapContainer extends Component {
 
   createComplianceURL = props => {
     return (
-      <a
-        href={this.state.selectedPlace.echoURL}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
+      <a href={this.state.selectedPlace.echoURL} target="_blank" rel="noopener noreferrer">
         <i className="far fa-3x fa-folder-open" />
       </a>
     );
   };
   //set the state to the zip value
   search = zip => {
-    //console.log("search:", zip);
     this.setState({
-      displayMarkers: this.state.markers.filter(
-        marker => marker.props.zip_code === zip
-      )
+      displayMarkers: this.state.markers.filter(marker => marker.props.zip_code === zip)
     });
     // re-center the map to a set of coordinates in the zip code
     //When the user submits a zip, our app needs to convert it to a lat/lng variable that can be passed thru.
     var zipCodeLocation = zipcodes.lookup(zip);
-    console.log("zipcodelocation", zipCodeLocation);
+    console.log('zipcodelocation', zipCodeLocation);
 
     //take the json lat&lng by calling the key on theobject
     //zipCodeLocation.latitude
@@ -124,9 +113,7 @@ export class MapContainer extends Component {
     });
     let displayMarkers = USAData.map(tile => {
       tile = tile.tri_facility;
-      //console.log(tile.ZIP_CODE);
 
-      //console.log(tile);
       //  Move the marker creation down to the render. Only store the marker data in the state and not the component creation.
       return (
         <Marker
@@ -134,10 +121,7 @@ export class MapContainer extends Component {
           title={tile.FACILITY_NAME}
           icon={{ url: orangeDiamond }}
           name={tile.FACILITY_NAME}
-          echoURL={
-            "https://echo.epa.gov/detailed-facility-report?fid=" +
-            tile.TRI_FACILITY_ID
-          }
+          echoURL={'https://echo.epa.gov/detailed-facility-report?fid=' + tile.TRI_FACILITY_ID}
           onClick={this.onMarkerClick}
           street_address={tile.STREET_ADDRESS}
           state_abbr={tile.STATE_ABBR}
@@ -151,9 +135,7 @@ export class MapContainer extends Component {
     this.setState({
       displayMarkers: displayMarkers,
       markers: displayMarkers
-      // displayMarkerData: USAData
     });
-    // console.log(this.state.markers)
   }
 
   render() {
@@ -195,18 +177,10 @@ export class MapContainer extends Component {
                     {marker}
                   </button>
                 ))}
-
-                {/* <button className="dropdown-item"
-                  onClick={this.onUSAClick}>
-                  USA
-                  </button>
-                  */}
               </div>
             </div>
           </div>
-          <h5 className="header-font text-center text-white">
-            My Neighborhood Health
-          </h5>
+          <h5 className="header-font text-center text-white">My Neighborhood Health</h5>
         </div>
 
         <Map
@@ -220,23 +194,15 @@ export class MapContainer extends Component {
           onClick={this.onMapClicked}
         >
           {/* Magenta current Location cross Marker */}
-          <Marker
-            name={"Current location"}
-            position={whereYouAre}
-            icon={magentaMarker}
-          />
+          <Marker name={'Current location'} position={whereYouAre} icon={magentaMarker} />
 
           {this.state.displayMarkers}
-          <InfoWindow
-            marker={this.state.activeMarker}
-            visible={this.state.showingInfoWindow}
-          >
+          <InfoWindow marker={this.state.activeMarker} visible={this.state.showingInfoWindow}>
             <div>
               <h1>{this.state.selectedPlace.name}</h1>
               <p>{this.state.selectedPlace.street_address}</p>
               <p>
-                {this.state.selectedPlace.city_name},{" "}
-                {this.state.selectedPlace.state_abbr}{" "}
+                {this.state.selectedPlace.city_name}, {this.state.selectedPlace.state_abbr}{' '}
                 {this.state.selectedPlace.zip_code}
               </p>
               <h4>Compliance History:</h4>
