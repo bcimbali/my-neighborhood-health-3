@@ -1,79 +1,72 @@
-var express = require("express");
-var router = express.Router();
-var User = require("./../../models/user");
+const express = require('express');
 
-console.log("in authRouter");
+const router = express.Router();
+const User = require('./../../models/user');
 
-//POST route for updating data. The / is using index.js which is /api/authentication
-router.route("/register").post(function(req, res) {
+console.log('in authRouter');
+
+// POST route for updating data. The / is using index.js which is /api/authentication
+router.route('/register').post(function(req, res) {
   console.log(req);
   User.create(req.body, function(error, user) {
     if (error) {
       return res.sendStatus(500);
-    } else {
-      req.session.userId = user._id;
-      console.log(user._id);
-      //return res.sendStatus(200);
-      return res.json({ redirect: "/" });
     }
+    req.session.userId = user._id;
+    console.log(user._id);
+    // return res.sendStatus(200);
+    return res.json({ redirect: '/' });
   });
 });
 
-router.route("/login").post(function(req, res, next) {
-  console.log("This is the login router req");
+router.route('/login').post(function(req, res, next) {
+  console.log('This is the login router req');
   console.log(req);
-  console.log("In login router");
-  User.authenticate(req.body.username, req.body.password, function(
-    error,
-    user
-  ) {
+  console.log('In login router');
+  User.authenticate(req.body.username, req.body.password, function(error, user) {
     if (error || !user) {
-      var err = new Error("Wrong username or password.");
+      const err = new Error('Wrong username or password.');
       err.status = 401;
       return next(err);
-    } else {
-      console.log("Correct username and password");
-      req.session.userId = user._id;
-      //return res.redirect('/');
-      //return res.status(200);
-      return res.json({ redirect: "/" });
     }
+    console.log('Correct username and password');
+    req.session.userId = user._id;
+    // return res.redirect('/');
+    // return res.status(200);
+    return res.json({ redirect: '/' });
   });
 });
 
-//GET route after registering
-router.get("/profile", function(req, res, next) {
+// GET route after registering
+router.get('/profile', function(req, res, next) {
   User.findById(req.session.userId).exec(function(error, user) {
     if (error) {
       return next(error);
-    } else {
-      if (user === null) {
-        const err = new Error("Not authorized! Go back!");
-        err.status = 400;
-        return res.json({ error: err.status, authentication: false });
-      } else {
-        return res.json({
-          username: user.username,
-          id: user._id,
-          email: user.email,
-          authentication: true
-        });
-      }
     }
+    if (user === null) {
+      const err = new Error('Not authorized! Go back!');
+      err.status = 400;
+      return res.json({ error: err.status, authentication: false });
+    }
+    return res.json({
+      username: user.username,
+      id: user._id,
+      email: user.email,
+      authentication: true
+    });
   });
 });
 
 // GET for logout logout
-router.get("/logout", function(req, res, next) {
+router.get('/logout', function(req, res, next) {
   console.log(req.session);
   if (req.session) {
     // delete session object
     req.session.destroy(function(err) {
       if (err) {
         return next(err);
-      } else {
-        return res.json({ redirect: "/" });
       }
+      return res.json({ redirect: '/' });
     });
   }
 });

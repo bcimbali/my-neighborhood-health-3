@@ -1,6 +1,6 @@
-var mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
-var PostSchema = new mongoose.Schema({
+const PostSchema = new mongoose.Schema({
   username: {
     type: String,
     unique: false,
@@ -20,5 +20,5 @@ var PostSchema = new mongoose.Schema({
   }
 });
 
-var Post = mongoose.model("Post", PostSchema);
+const Post = mongoose.model('Post', PostSchema);
 module.exports = Post;
