@@ -11,6 +11,7 @@
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
     "start:prod": "node server.js",
     "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
+    "eslint": "eslint .",
     "client": "cd client && npm run start",
     "install": "cd client && npm install",
     "build": "cd client && npm run build",
@@ -49,5 +50,11 @@
     "request": "^2.88.0",
     "startbootstrap-simple-sidebar": "^4.1.1",
     "zipcodes": "^6.1.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-config-dev": "^2.0.0",
+    "eslint-plugin-import": "^2.16.0"
   }
 }
