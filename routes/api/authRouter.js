@@ -3,8 +3,6 @@ const express = require('express');
 const router = express.Router();
 const User = require('./../../models/user');
 
-console.log('in authRouter');
-
 // POST route for updating data. The / is using index.js which is /api/authentication
 router.route('/register').post(function(req, res) {
   console.log(req);
@@ -13,26 +11,18 @@ router.route('/register').post(function(req, res) {
       return res.sendStatus(500);
     }
     req.session.userId = user._id;
-    console.log(user._id);
-    // return res.sendStatus(200);
     return res.json({ redirect: '/' });
   });
 });
 
 router.route('/login').post(function(req, res, next) {
-  console.log('This is the login router req');
-  console.log(req);
-  console.log('In login router');
   User.authenticate(req.body.username, req.body.password, function(error, user) {
     if (error || !user) {
       const err = new Error('Wrong username or password.');
       err.status = 401;
       return next(err);
     }
-    console.log('Correct username and password');
     req.session.userId = user._id;
-    // return res.redirect('/');
-    // return res.status(200);
     return res.json({ redirect: '/' });
   });
 });
@@ -59,7 +49,6 @@ router.get('/profile', function(req, res, next) {
 
 // GET for logout logout
 router.get('/logout', function(req, res, next) {
-  console.log(req.session);
   if (req.session) {
     // delete session object
     req.session.destroy(function(err) {

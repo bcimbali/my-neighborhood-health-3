@@ -3,7 +3,6 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const favicon = require('express-favicon');
 
 const PORT = process.env.PORT || 3001;
 const session = require('express-session');
@@ -15,8 +14,10 @@ require('dotenv').load();
 
 const db = mongoose.connection;
 
-// connect to mongoose
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/my-neighborhood-health');
+/** Connect to Mongoose and use new URL parser */
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/my-neighborhood-health', {
+  useNewUrlParser: true
+});
 
 // use sessions for tracking logins
 app.use(

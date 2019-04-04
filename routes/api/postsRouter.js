@@ -3,8 +3,6 @@ const express = require('express');
 const router = express.Router();
 const Post = require('./../../models/posts');
 
-console.log('in postsRouter');
-
 router.route('/').get(function(req, res) {
   Post.find(req.query).then(dbPost => res.json(dbPost));
 });
