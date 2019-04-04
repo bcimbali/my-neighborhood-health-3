@@ -88,7 +88,7 @@ class Register extends Component {
                 <div className="control">
                   <input
                     className="input form-control text-white transparent-bg w-100"
-                    type="text"
+                    type="email"
                     name="email"
                     placeholder="Enter email"
                     value={this.state.email}
@@ -189,19 +189,3 @@ class Register extends Component {
 }
 
 export default Register;
-
-//In handle submit after event.preventDefault
-// if (!this.state.email.trim() === "" || !this.state.password.trim() === "") {
-// we are good to go submit
-//regular expression checking for email and password here
-// const loginData = {email: this.state.email, password: this.state.password}
-// axios.post(`/api/auth/login`, loginData)
-//   .then(res => ...handle response)
-//	.redirect (/)
-//   .catch(err => ...handle error)
-//if (req.body.password !== req.body.passwordConf) {
-//   var err = new Error('Passwords do not match.');
-//   err.status = 400;
-//   res.send("passwords dont match");
-//   return next(err);
-// }
