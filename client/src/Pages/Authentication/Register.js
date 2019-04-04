@@ -25,7 +25,6 @@ class Register extends Component {
       });
     } else {
       const { name, value } = event.target;
-      console.log(name, value);
       this.setState({
         [name]: value
       });
@@ -33,7 +32,6 @@ class Register extends Component {
   };
 
   handleSubmit = event => {
-    console.log('Form value: ', this.state);
     event.preventDefault();
     const userData = {
       username: this.state.username,
@@ -41,7 +39,6 @@ class Register extends Component {
       password: this.state.password,
       passwordConf: this.state.passwordConf
     };
-    console.log(userData);
     axios
       .post('/api/authentication/register', userData)
       .then(function(response) {
@@ -104,7 +101,7 @@ class Register extends Component {
                 <div className="control">
                   <input
                     className="input form-control text-white transparent-bg w-100"
-                    type="text"
+                    type="password"
                     name="password"
                     placeholder="Enter password"
                     value={this.state.password}
@@ -118,7 +115,7 @@ class Register extends Component {
                 <div className="control">
                   <input
                     className="input form-control text-white transparent-bg w-100"
-                    type="text"
+                    type="password"
                     name="passwordConf"
                     placeholder="Enter password again"
                     value={this.state.passwordConf}
@@ -146,7 +143,6 @@ class Register extends Component {
                   </label>
                 </div>
               </div>
-              {/* <button className="mt-2" disabled = {this.state.terms ? false : true}> Submit </button> */}
               {button}
             </form>
 

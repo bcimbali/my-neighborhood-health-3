@@ -73,7 +73,7 @@ class Login extends Component {
                 <div className="control">
                   <input
                     className="input form-control text-white transparent-bg"
-                    type="text"
+                    type="password"
                     name="password"
                     placeholder="Enter password"
                     value={this.state.password}
@@ -81,8 +81,6 @@ class Login extends Component {
                   />
                 </div>
               </div>
-              {/* <button className="mt-2"> Submit </button> */}
-              {/* <button disabled = {this.state.terms ? false : true}> Submit </button> */}
               {button}
             </form>
           </div>

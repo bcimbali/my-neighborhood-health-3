@@ -138,6 +138,11 @@ input[type=text]:focus {
   color: white;
 }
 
+input[type=password]:focus {
+  background: transparent;
+  color: white;
+}
+
 input[type=text]::-webkit-input-placeholder {
   /* Chrome/Opera/Safari */
   color: white;
